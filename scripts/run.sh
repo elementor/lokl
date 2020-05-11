@@ -45,6 +45,9 @@ wp option update blogdescription "Your fast, secure local WP environment"
 wp post update 1 --post_content="Use this site as your starting point or import content from an existing site. <a href='/wp-admin'>View Dashboard</a>"
 wp post update 1 --post_title="Getting started"
 
+# activate default plugins
+# wp plugin activate static-html-output-plugin
+
 
 # start nginx
 mkdir -p /usr/logs/nginx
