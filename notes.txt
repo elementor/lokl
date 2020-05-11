@@ -1,0 +1,10 @@
+
+# build image with force
+sudo time docker build -t lokl . --force-rm --no-cache
+
+# run container
+sudo docker run --name testbuild001 -p 4444:4444 -d lokl
+
+# shell into container
+sudo docker exec -it  CONTAINER_NAME /bin/sh
+
