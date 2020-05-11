@@ -40,6 +40,12 @@ rm wp-config-sample.php
 
 sudo -u nginx wp core install --url=http://localhost:4444 --title='Welcome to Lokl' --admin_user=admin --admin_password=admin --admin_email=me@example.com
 
+wp rewrite structure '/%postname%/'
+wp option update blogdescription "Your fast, secure local WP environment"
+wp post update 1 --post_content="Use this site as your starting point or import content from an existing site. <a href='/wp-admin'>View Dashboard</a>""
+wp post update 1 --post_title="Getting started"
+
+
 # start nginx
 mkdir -p /usr/logs/nginx
 mkdir -p /tmp/nginx
