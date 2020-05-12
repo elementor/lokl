@@ -22,22 +22,22 @@ In order to run this container you'll need docker installed.
 Quickly launch a new WordPress local development environment, available at http://clientsite1.localhost:4000
 
 ```shell
-name=clientsite1;port=4000; docker run -e N=$name -e P=$port --name=$name -p $port:$port -d lokl
+name=clientsite1;port=4000; docker run -e N=$name -e P=$port --name=$name -p $port:$port -d lokl/lokl
 ```
 
 or with `sudo`
 
 ```shell
-name=clientsite1;port=4000; sudo docker run -e N=$name -e P=$port --name=$name -p $port:$port -d lokl
+name=clientsite1;port=4000; sudo docker run -e N=$name -e P=$port --name=$name -p $port:$port -d lokl/lokl
 ```
 
 Launch a bunch of new sites. Each site requires a unique name and port (within range `4000-5000`).
 
 ```shell
-name=clientsite1;port=4000; docker run -e N=$name -e P=$port --name=$name -p $port:$port -d lokl
-name=myblog;port=4001; docker run -e N=$name -e P=$port --name=$name -p $port:$port -d lokl
-name=portfolio;port=4444; docker run -e N=$name -e P=$port --name=$name -p $port:$port -d lokl
-name=clientsite2;port=4321; docker run -e N=$name -e P=$port --name=$name -p $port:$port -d lokl
+name=clientsite1;port=4000; docker run -e N=$name -e P=$port --name=$name -p $port:$port -d lokl/lokl
+name=myblog;port=4001; docker run -e N=$name -e P=$port --name=$name -p $port:$port -d lokl/lokl
+name=portfolio;port=4444; docker run -e N=$name -e P=$port --name=$name -p $port:$port -d lokl/lokl
+name=clientsite2;port=4321; docker run -e N=$name -e P=$port --name=$name -p $port:$port -d lokl/lokl
 ```
 
 These sites will then be available at:
