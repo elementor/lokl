@@ -91,7 +91,7 @@ utility scripts able to be run/imported via the web terminal.
 
 ## Authors
 
-* **Leon Stafford** - [ljs.de](https://ljs.dev)
+* **Leon Stafford** - [ljs.dev](https://ljs.dev)
 
 See also the list of [contributors](https://github.com/lokl-dev/lokl) who 
 participated in this project.
