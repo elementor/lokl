@@ -2,7 +2,9 @@
 
 echo 'running script'
 
-# sitename for subdomain available as $name, port as $port 
+# sitename for subdomain available as $N, port as $P 
+name="$N"
+port="$P"
 
 # set WP site URL
 
@@ -59,7 +61,7 @@ wp post update 1 --post_title="Getting started"
 
 # activate default plugins
 wp plugin activate static-html-output-plugin
-wp plugin activate auto-login
+# wp plugin activate auto-login
 
 
 # start nginx
