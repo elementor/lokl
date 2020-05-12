@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-ENV TERM="xterm" 
+ENV TERM="xterm"
 
 RUN apk add --no-cache bash curl less  nginx ca-certificates tzdata zip curl \
     libmcrypt-dev zlib-dev gmp-dev \
@@ -10,12 +10,12 @@ RUN apk add --no-cache bash curl less  nginx ca-certificates tzdata zip curl \
     php7-gd php7-iconv php7-mcrypt php7-gmp php7-zip \
     php7-curl php7-opcache php7-ctype php7-apcu \
     sudo \
-    mariadb mariadb-server-utils \
+    mariadb mariadb-server-utils mysql-client \
     php7-intl php7-bcmath php7-dom php7-mbstring php7-xmlreader  && apk add -u musl && \
     rm -rf /var/cache/apk/*
 
 # removed
-# mysql-client libjpeg-turbo-dev php7-pdo php7-pdo_mysql git 
+#  libjpeg-turbo-dev php7-pdo php7-pdo_mysql git 
 
 RUN sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php7/php.ini && \
     sed -i 's/memory_limit = 128M/memory_limit = 4096M/g' /etc/php7/php.ini && \ 
@@ -42,7 +42,7 @@ RUN echo 'root ALL=(nginx) NOPASSWD: /usr/local/bin/wp' >> /etc/sudoers
 RUN echo "Set disable_coredump false" >> /etc/sudo.conf
 
 # mariadb setup
-RUN mkdir -p /run/mysqld 
+RUN mkdir -p /run/mysqld
 
 RUN mysql_install_db --user=root --basedir=/usr --datadir=/var/lib/mysql 
 
@@ -65,8 +65,8 @@ RUN rm -Rf /installers
 # set web root permissions
 RUN chown -R nginx:www-data /usr/html/
 
-# EXPOSE 2000-8000
-EXPOSE 4444
+EXPOSE 4000-5000
+# EXPOSE 4444
 #VOLUME ["/usr/html"]
 
 CMD ["/run.sh"]

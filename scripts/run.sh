@@ -2,6 +2,18 @@
 
 echo 'running script'
 
+# sitename for subdomain available as $name, port as $port 
+
+# set WP site URL
+
+# set port in nginx
+sed -i "s/NGINX_LISTEN_PORT/$port/g" /etc/nginx/nginx.conf
+
+
+# add to hosts file (needed?)
+
+# TODO: if expected envs aren's set, show default nginx page with warning to try again
+
 [ -f /run-pre.sh ] && /run-pre.sh
 
 if [ ! -d /usr/html ] ; then
@@ -38,7 +50,7 @@ cd /usr/html
 sudo -u nginx wp core config --dbhost=localhost --dbname=wordpress --dbuser=root --dbpass=banana
 rm wp-config-sample.php
 
-sudo -u nginx wp core install --url=http://localhost:4444 --title='Welcome to Lokl' --admin_user=admin --admin_password=admin --admin_email=me@example.com
+sudo -u nginx wp core install --url="http://$name.localhost:$port" --title='Welcome to Lokl' --admin_user=admin --admin_password=admin --admin_email=me@example.com
 
 wp rewrite structure '/%postname%/'
 wp option update blogdescription "Your fast, secure local WP environment"
@@ -46,7 +58,8 @@ wp post update 1 --post_content="Use this site as your starting point or import 
 wp post update 1 --post_title="Getting started"
 
 # activate default plugins
-# wp plugin activate static-html-output-plugin
+wp plugin activate static-html-output-plugin
+wp plugin activate auto-login
 
 
 # start nginx
