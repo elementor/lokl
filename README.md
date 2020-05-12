@@ -19,23 +19,35 @@ In order to run this container you'll need docker installed.
 
 #### Container Parameters
 
-List the different parameters available to your container
+Quickly launch a new WordPress local development environment, available at http://clientsite1.localhost:4000
 
 ```shell
-docker run give.example.org/of/your/container:v0.2.1 parameters
+name=clientsite1;port=4000; docker run -e N=$name -e P=$port --name=$name -p $port:$port -d lokl
 ```
 
-One example per permutation 
+or with `sudo`
 
 ```shell
-docker run give.example.org/of/your/container:v0.2.1
+name=clientsite1;port=4000; sudo docker run -e N=$name -e P=$port --name=$name -p $port:$port -d lokl
 ```
 
-Show how to get a shell started in your container too
+Launch a bunch of new sites. Each site requires a unique name and port (within range `4000-5000`).
 
 ```shell
-docker run give.example.org/of/your/container:v0.2.1 bash
+name=clientsite1;port=4000; docker run -e N=$name -e P=$port --name=$name -p $port:$port -d lokl
+name=myblog;port=4001; docker run -e N=$name -e P=$port --name=$name -p $port:$port -d lokl
+name=portfolio;port=4444; docker run -e N=$name -e P=$port --name=$name -p $port:$port -d lokl
+name=clientsite2;port=4321; docker run -e N=$name -e P=$port --name=$name -p $port:$port -d lokl
 ```
+
+These sites will then be available at:
+
+ - http://clientsite1.localhost:4000
+ - http://myblog.localhost:4001
+ - http://portfolio.localhost:4444
+ - http://clientsite2.localhost:4321
+
+
 
 #### Environment Variables
 
