@@ -61,6 +61,7 @@ wp post update 1 --post_title="Getting started"
 
 # activate default plugins
 wp plugin activate static-html-output-plugin
+wp plugin activate simplerstatic
 # wp plugin activate auto-login
 
 
