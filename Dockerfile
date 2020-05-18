@@ -32,6 +32,7 @@ ADD installers /installers
 ADD scripts/mysql_setup.sql /
 ADD scripts/mysql_user.sql /
 ADD scripts/mysql_user.sql /
+ADD scripts/health-check.sh /
 ADD scripts/install_default_plugins.sh /
 RUN chmod +x /run.sh && \
     chmod +x /installers/wp-cli.phar && mv installers/wp-cli.phar /usr/bin/wp && chown nginx:nginx /usr/bin/wp
