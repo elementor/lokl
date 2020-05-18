@@ -12,7 +12,8 @@ port="$P"
 sed -i "s/NGINX_LISTEN_PORT/$port/g" /etc/nginx/nginx.conf
 
 
-# add to hosts file (needed?)
+# add subdomain to hosts file
+echo "127.0.0.1       $name.localhost" >> /etc/hosts
 
 # TODO: if expected envs aren's set, show default nginx page with warning to try again
 
