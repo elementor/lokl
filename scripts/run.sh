@@ -13,7 +13,7 @@ sed -i "s/NGINX_LISTEN_PORT/$port/g" /etc/nginx/nginx.conf
 
 
 # add subdomain to hosts file
-echo "127.0.0.1       $name.localhost" >> /etc/hosts
+# echo "127.0.0.1       $name.localhost" >> /etc/hosts
 
 # run script in background to ensure hosts entry exists for subdomain
 sh /health-check.sh &
@@ -56,7 +56,7 @@ cd /usr/html
 sudo -u nginx wp core config --dbhost=localhost --dbname=wordpress --dbuser=root --dbpass=banana
 rm wp-config-sample.php
 
-sudo -u nginx wp core install --url="http://$name.localhost:$port" --title='Welcome to Lokl' --admin_user=admin --admin_password=admin --admin_email=me@example.com
+sudo -u nginx wp core install --url="http://localhost:$port" --title="$name: Lokl WordPress: " --admin_user=admin --admin_password=admin --admin_email=me@example.com
 
 wp rewrite structure '/%postname%/'
 wp option update blogdescription "Your fast, secure local WP environment"

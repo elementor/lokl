@@ -2,14 +2,14 @@ FROM alpine:latest
 
 ENV TERM="xterm"
 
-RUN apk add --no-cache bash curl less  nginx ca-certificates tzdata zip curl \
+RUN apk add --no-cache bash curl less nginx ca-certificates tzdata zip curl \
     libmcrypt-dev zlib-dev gmp-dev \
     freetype-dev  libpng-dev \
     php7-fpm php7-json php7-zlib php7-xml  php7-phar php7-openssl \
     php7-mysqli php7-session \
     php7-gd php7-iconv php7-mcrypt php7-gmp php7-zip \
     php7-curl php7-opcache php7-ctype php7-apcu \
-    sudo \
+    sudo vim tmux git procps wget sed grep \
     mariadb mariadb-server-utils mysql-client \
     php7-intl php7-bcmath php7-dom php7-mbstring php7-xmlreader  && apk add -u musl && \
     rm -rf /var/cache/apk/*
@@ -27,6 +27,8 @@ RUN sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php7/php.ini && \
 
 ADD conf/nginx.conf /etc/nginx/
 ADD conf/php-fpm.conf /etc/php7/
+ADD conf/.vimrc /root/
+ADD conf/.tmux.conf /root/
 ADD scripts/run.sh /
 ADD installers /installers
 ADD scripts/mysql_setup.sql /
