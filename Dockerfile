@@ -8,8 +8,8 @@ RUN apk add --no-cache bash curl less nginx ca-certificates tzdata zip curl \
     php7-fpm php7-json php7-zlib php7-xml  php7-phar php7-openssl \
     php7-mysqli php7-session \
     php7-gd php7-iconv php7-mcrypt php7-gmp php7-zip \
-    php7-curl php7-opcache php7-ctype php7-apcu \
-    sudo vim tmux git procps wget sed grep \
+    php7-curl php7-opcache php7-ctype php7-apcu php7-ftp php7-tokenizer php7xmlwriter php7-simplexml \
+    sudo vim tmux git procps wget sed grep openssh-keygen \
     mariadb mariadb-server-utils mysql-client \
     php7-intl php7-bcmath php7-dom php7-mbstring php7-xmlreader  && apk add -u musl && \
     rm -rf /var/cache/apk/*
