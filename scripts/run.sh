@@ -12,12 +12,6 @@ port="$P"
 sed -i "s/NGINX_LISTEN_PORT/$port/g" /etc/nginx/nginx.conf
 
 
-# add subdomain to hosts file
-# echo "127.0.0.1       $name.localhost" >> /etc/hosts
-
-# run script in background to ensure hosts entry exists for subdomain
-sh /health-check.sh &
-
 # TODO: if expected envs aren's set, show default nginx page with warning to try again
 
 [ -f /run-pre.sh ] && /run-pre.sh
@@ -66,8 +60,10 @@ wp post update 1 --post_title="Getting started"
 # activate default plugins
 wp plugin activate static-html-output-plugin
 wp plugin activate simplerstatic
+wp plugin activate wp2static
+wp plugin activate wp2static-addon-zip
+wp plugin activate wp2static-addon-s3
 # wp plugin activate auto-login
-
 
 # start nginx
 mkdir -p /usr/logs/nginx
