@@ -18,8 +18,8 @@ RUN apk add --no-cache bash curl less nginx ca-certificates tzdata zip curl \
 #  libjpeg-turbo-dev php7-pdo php7-pdo_mysql git 
 
 RUN sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php7/php.ini && \
-    sed -i 's/memory_limit = 128M/memory_limit = 4096M/g' /etc/php7/php.ini && \ 
-    sed -i 's/max_execution_time = 30/max_execution_time = 3000/g' /etc/php7/php.ini && \ 
+    sed -i 's/memory_limit = 128M/memory_limit = -1/g' /etc/php7/php.ini && \ 
+    sed -i 's/max_execution_time = 30/max_execution_time = 0/g' /etc/php7/php.ini && \ 
     sed -i 's/expose_php = On/expose_php = Off/g' /etc/php7/php.ini && \
     sed -i "s/nginx:x:100:101:nginx:\/var\/lib\/nginx:\/sbin\/nologin/nginx:x:100:101:nginx:\/usr:\/bin\/bash/g" /etc/passwd && \
     sed -i "s/nginx:x:100:101:nginx:\/var\/lib\/nginx:\/sbin\/nologin/nginx:x:100:101:nginx:\/usr:\/bin\/bash/g" /etc/passwd- && \
@@ -34,7 +34,6 @@ ADD installers /installers
 ADD scripts/mysql_setup.sql /
 ADD scripts/mysql_user.sql /
 ADD scripts/mysql_user.sql /
-ADD scripts/health-check.sh /
 ADD scripts/install_default_plugins.sh /
 RUN chmod +x /run.sh && \
     chmod +x /installers/wp-cli.phar && mv installers/wp-cli.phar /usr/bin/wp && chown nginx:nginx /usr/bin/wp

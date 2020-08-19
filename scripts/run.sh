@@ -50,12 +50,16 @@ cd /usr/html
 sudo -u nginx wp core config --dbhost=localhost --dbname=wordpress --dbuser=root --dbpass=banana
 rm wp-config-sample.php
 
-sudo -u nginx wp core install --url="http://localhost:$port" --title="$name: Lokl WordPress: " --admin_user=admin --admin_password=admin --admin_email=me@example.com
+sudo -u nginx wp core install --url="http://localhost:$port" --title="$name: Lokl WordPress" --admin_user=admin --admin_password=admin --admin_email=me@example.com
 
 wp rewrite structure '/%postname%/'
 wp option update blogdescription "Your fast, secure local WP environment"
 wp post update 1 --post_content="Use this site as your starting point or import content from an existing site. <a href='/wp-admin'>View Dashboard</a>"
 wp post update 1 --post_title="Getting started"
+
+# delete useless plugins
+wp plugin delete hello
+wp plugin delete akismet
 
 # activate default plugins
 wp plugin activate static-html-output-plugin
@@ -63,6 +67,7 @@ wp plugin activate simplerstatic
 wp plugin activate wp2static
 wp plugin activate wp2static-addon-zip
 wp plugin activate wp2static-addon-s3
+# TODO: change to magic link style from default theme
 # wp plugin activate auto-login
 
 # start nginx
