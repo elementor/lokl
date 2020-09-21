@@ -30,12 +30,14 @@ ADD conf/php-fpm.conf /etc/php7/
 ADD conf/.vimrc /root/
 ADD conf/.tmux.conf /root/
 ADD scripts/run.sh /
+ADD scripts/backup_site.sh /
 ADD installers /installers
 ADD scripts/mysql_setup.sql /
 ADD scripts/mysql_user.sql /
 ADD scripts/mysql_user.sql /
 ADD scripts/install_default_plugins.sh /
 RUN chmod +x /run.sh && \
+    chmod +x /backup_site.sh && \
     chmod +x /installers/wp-cli.phar && mv installers/wp-cli.phar /usr/bin/wp && chown nginx:nginx /usr/bin/wp
 
 # allow nginx user run WP-CLI commands
