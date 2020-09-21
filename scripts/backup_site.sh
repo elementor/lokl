@@ -16,5 +16,3 @@ echo "generating backup for site named $N"
 # generate archive of whole html dir and compresssed DB dump
 tar cfz "/tmp/${N}_SITE_BACKUP.tar.gz" html LOKL_DATABASE_BACKUP.sql
 
-ls /tmp
-
