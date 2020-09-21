@@ -17,18 +17,34 @@ In order to run this container you'll need docker installed.
 
 ### Usage
 
+## One-line instant WordPress instance
+
+If you want to take advantage of the full convenience of Lokl, [download the
+ management script](https://github.com/lokl-dev/go) or simply run:
+
+`\curl -sSL https://lokl.dev/go | sh`
+
+to launch the Lokl management script to start or manage new WordPress sites.
+
 #### Container Parameters
 
-Quickly launch a new WordPress local development environment, available at http://clientsite1.localhost:4000
+We default to support ports in range 4000-5000.
+
+Example run command:
+
+*Note: assuming your Docker environment is set to not require `sudo` prefixed to
+ commands, else adjust accordingly.*
+
+```
+docker run -e N="$LOKL_NAME" -e P="$LOKL_PORT" \                            
+  --name="$LOKL_NAME" -p "$LOKL_PORT":"$LOKL_PORT" \                        
+  -d lokl/lokl:"$LOKL_VERSION"   
+```
+
+Quickly launch a new WordPress local development environment, available at http://localhost:4000
 
 ```shell
 name=clientsite1;port=4000; docker run -e N=$name -e P=$port --name=$name -p $port:$port -d lokl/lokl
-```
-
-or with `sudo`
-
-```shell
-name=clientsite1;port=4000; sudo docker run -e N=$name -e P=$port --name=$name -p $port:$port -d lokl/lokl
 ```
 
 Launch a bunch of new sites. Each site requires a unique name and port (within range `4000-5000`).
@@ -42,10 +58,13 @@ name=clientsite2;port=4321; docker run -e N=$name -e P=$port --name=$name -p $po
 
 These sites will then be available at:
 
- - http://clientsite1.localhost:4000
- - http://myblog.localhost:4001
- - http://portfolio.localhost:4444
- - http://clientsite2.localhost:4321
+ - http://localhost:4000
+ - http://localhost:4001
+ - http://localhost:4444
+ - http://localhost:4321
+
+Remembering your sites by port name is crazy, so best use Lokl's [management
+ script](https://github.com/lokl-dev/go) instead!.
 
 
 #### Environment Variables
