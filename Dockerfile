@@ -61,6 +61,9 @@ RUN unzip /installers/wordpress-5.5.1.zip -d /tmp
 RUN cp -r /tmp/wordpress/* /usr/html/
 RUN rm -Rf /tmp/wordpress
 
+# show user/pwd hint on login screen
+RUN grep -Rl 'Username or Email Address' | xargs sed -i 's/Username or Email Address/User (u\/p: admin\/admin)/g'
+
 # install all default plugins
 RUN sh /install_default_plugins.sh
 # cleanup
