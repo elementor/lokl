@@ -67,6 +67,9 @@ wp plugin activate simplerstatic
 wp plugin activate wp2static
 wp plugin activate wp2static-addon-zip
 wp plugin activate wp2static-addon-s3
+wp plugin activate wp2static-addon-netlify
+wp plugin activate wp2static-addon-advanced-crawler
+wp plugin activate wp2static-addon-cloudflare-workers
 # TODO: change to magic link style from default theme
 # wp plugin activate auto-login
 
