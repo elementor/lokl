@@ -22,6 +22,10 @@ leonstafford/wp2static-addon-cloudflare-workers
 rm -Rf /tmp/wp2staticloklbuildcache
 mkdir -p /tmp/wp2staticloklbuildcache
 
+# rm existing versioned WP2Static plugins from Lokl image builder
+cd "$HOME/lokl/installers/default_plugins/" || exit 1
+rm -f wp2static*.zip
+
 cd /tmp/wp2staticloklbuildcache || exit 1
 
 # iterate each repo
@@ -55,10 +59,6 @@ do
 
   # composer build wp2static-addon-s3 (generates ~/Downloads/wp2static-addon-s3.zip)
   composer build "$DIRNAME" || exit 1
-
-  # rm existing versioned WP2Static plugins from Lokl image builder
-  cd "$HOME/lokl/installers/default_plugins/" || exit 1
-  rm -f wp2static*.zip
 
   # cp installer to ./installers/default_plugins 
   cp "$HOME/Downloads/$DIRNAME.zip" "$HOME/lokl/installers/default_plugins/"
