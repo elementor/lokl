@@ -29,11 +29,11 @@ for REPO in $WP2STATIC_REPOS
 do
   DIRNAME="$(echo $REPO | cut -d\/ -f2)"
   echo ""
-  echo "######################################"
+  echo "##############################################"
   echo ""
   echo "Processing $DIRNAME..."
   echo ""
-  echo "######################################"
+  echo "##############################################"
   echo ""
 
   cd /tmp/wp2staticloklbuildcache || exit 1
@@ -57,7 +57,8 @@ do
   composer build "$DIRNAME" || exit 1
 
   # rm existing versioned WP2Static plugins from Lokl image builder
-  rm -f "$HOME/lokl/installers/default_plugins/wp2static*.zip"
+  cd "$HOME/lokl/installers/default_plugins/" || exit 1
+  rm -f wp2static*.zip
 
   # cp installer to ./installers/default_plugins 
   cp "$HOME/Downloads/$DIRNAME.zip" "$HOME/lokl/installers/default_plugins/"
