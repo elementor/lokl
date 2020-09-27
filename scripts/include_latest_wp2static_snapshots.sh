@@ -28,13 +28,21 @@ cd /tmp/wp2staticloklbuildcache || exit 1
 for REPO in $WP2STATIC_REPOS
 do
   DIRNAME="$(echo $REPO | cut -d\/ -f2)"
+  echo ""
+  echo "######################################"
+  echo ""
   echo "Processing $DIRNAME..."
+  echo ""
+  echo "######################################"
+  echo ""
+
+  cd /tmp/wp2staticloklbuildcache || exit 1
 
   # clone --depth=1
   git clone --quiet --depth=1 "git@github.com:$REPO.git"
 
   # cd into repo
-  cd "$DIRNAME"
+  cd "$DIRNAME" || exit 1
 
   # composer test && composer coverage
   # exit if non-zero
