@@ -1,6 +1,9 @@
 FROM alpine:latest
 
 ENV TERM="xterm"
+# allow phpMyAdmin auto-login
+# ENV PMA_USER="root"
+# ENV PMA_PASSWORD="banana"
 
 RUN apk add --no-cache bash curl less nginx ca-certificates tzdata zip curl \
     libmcrypt-dev zlib-dev gmp-dev \
@@ -60,6 +63,18 @@ WORKDIR /usr/html
 RUN unzip /installers/wordpress-5.5.1.zip -d /tmp
 RUN cp -r /tmp/wordpress/* /usr/html/
 RUN rm -Rf /tmp/wordpress
+
+# extract phpMyAdmin to /usr/html/phpmyadmin/
+RUN unzip /installers/phpMyAdmin-5.0.2-all-languages.zip -d /tmp
+RUN mv /tmp/phpMyAdmin-5.0.2-all-languages /usr/html/phpmyadmin/
+RUN rm -Rf /tmp/phpMyAdmin-5.0.2-all-languages
+
+# allow autologin for phpmyadmin
+RUN mv /usr/html/phpmyadmin/config.sample.inc.php /usr/html/phpmyadmin/config.inc.php
+RUN echo "\$cfg['Servers'][\$i]['auth_type'] = 'config';" >> /usr/html/phpmyadmin/config.inc.php
+RUN echo "\$cfg['Servers'][\$i]['username'] = 'root';" >> /usr/html/phpmyadmin/config.inc.php
+RUN echo "\$cfg['Servers'][\$i]['password'] = 'banana';" >> /usr/html/phpmyadmin/config.inc.php
+
 
 # show user/pwd hint on login screen
 RUN grep -Rl 'Username or Email Address' | xargs sed -i 's/Username or Email Address/User (u\/p: admin\/admin)/g'
