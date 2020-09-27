@@ -1,4 +1,4 @@
-## Lokl 0.0.18
+## Lokl 0.0.19
 
  - phpMyAdmin with auto-login at /phpmyadmin
 

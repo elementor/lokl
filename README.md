@@ -11,9 +11,9 @@ These instructions will cover usage information and for the docker container
 
 In order to run this container you'll need docker installed.
 
-* [Windows](https://docs.docker.com/windows/started)
 * [OS X](https://docs.docker.com/mac/started/)
 * [Linux](https://docs.docker.com/linux/started/)
+* [Windows](https://docs.docker.com/windows/started)
 
 ### Usage
 
@@ -22,7 +22,7 @@ In order to run this container you'll need docker installed.
 If you want to take advantage of the full convenience of Lokl, [download the
  management script](https://github.com/lokl-dev/go) or simply run:
 
-`\curl -sSL https://lokl.dev/go | sh`
+`\sh -c "$(curl -sSl 'https://lokl.dev/go?v=3')"`
 
 to launch the Lokl management script to start or manage new WordPress sites.
 
