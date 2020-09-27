@@ -13,7 +13,8 @@
 WP2STATIC_REPOS="leonstafford/wp2static
 leonstafford/wp2static-addon-s3
 leonstafford/wp2static-addon-zip
-leonstafford/wp2static-addon-wp2static-addon-advanced-crawling
+leonstafford/wp2static-addon-advanced-crawling
+leonstafford/wp2static-addon-netlify
 leonstafford/wp2static-addon-cloudflare-workers
 "
 
@@ -30,7 +31,7 @@ do
   echo "Processing $DIRNAME..."
 
   # clone --depth=1
-  git clone --depth=1 "git@github.com:$REPO.git"
+  git clone --quiet --depth=1 "git@github.com:$REPO.git"
 
   # cd into repo
   cd "$DIRNAME"
@@ -48,7 +49,7 @@ do
   composer build "$DIRNAME" || exit 1
 
   # rm existing versioned WP2Static plugins from Lokl image builder
-  cp "$HOME/Downloads/$DIRNAME.zip" "$HOME/lokl/installers/default_plugins/$DIRNAME.zip"
+  rm -f "$HOME/lokl/installers/default_plugins/wp2static*.zip"
 
   # cp installer to ./installers/default_plugins 
   cp "$HOME/Downloads/$DIRNAME.zip" "$HOME/lokl/installers/default_plugins/"
