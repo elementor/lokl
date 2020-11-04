@@ -42,7 +42,7 @@ do
 
   cd /tmp/wp2staticloklbuildcache || exit 1
 
-  # clone --depth=1
+  # clone --depth=1 default branch
   git clone --quiet --depth=1 "git@github.com:$REPO.git"
 
   # cd into repo
@@ -60,7 +60,7 @@ do
   # composer build wp2static-addon-s3 (generates ~/Downloads/wp2static-addon-s3.zip)
   composer build "$DIRNAME" || exit 1
 
-  # cp installer to ./installers/default_plugins 
+  # cp installer to ./installers/default_plugins
   cp "$HOME/Downloads/$DIRNAME.zip" "$HOME/lokl/installers/default_plugins/"
 
   # adjust run script to use ./installers/default_plugins/activate vs install_only
