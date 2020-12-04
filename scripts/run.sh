@@ -62,14 +62,15 @@ wp plugin delete hello
 wp plugin delete akismet
 
 # activate default plugins
-wp plugin activate static-html-output-plugin
+wp plugin activate static-html-output
 wp plugin activate simplerstatic
 wp plugin activate wp2static
 wp plugin activate wp2static-addon-zip
 wp plugin activate wp2static-addon-s3
 wp plugin activate wp2static-addon-netlify
-wp plugin activate wp2static-addon-advanced-crawler
-wp plugin activate wp2static-addon-cloudflare-workers
+# wp plugin activate wp2static-addon-advanced-crawler
+# wp plugin activate wp2static-addon-cloudflare-workers
+
 # TODO: change to magic link style from default theme
 # wp plugin activate auto-login
 
