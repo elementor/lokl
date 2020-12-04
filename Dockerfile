@@ -1,21 +1,26 @@
-FROM alpine:latest
+FROM alpine:edge
 
 ENV TERM="xterm"
 # allow phpMyAdmin auto-login
 # ENV PMA_USER="root"
 # ENV PMA_PASSWORD="banana"
 
-RUN apk add --no-cache bash curl less nginx ca-certificates tzdata zip curl \
+RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
+    bash curl less nginx ca-certificates tzdata zip curl \
     libmcrypt-dev zlib-dev gmp-dev \
     freetype-dev  libpng-dev \
     php8-fpm php8-json php8-zlib php8-xml  php8-phar php8-openssl \
     php8-mysqli php8-session \
-    php8-gd php8-iconv php8-mcrypt php8-gmp php8-zip \
-    php8-curl php8-opcache php8-ctype php8-apcu php8-ftp php8-tokenizer php8-simplexml \
+    php8-gd php8-iconv php8-gmp php8-zip \
+    php8-curl php8-opcache php8-ctype php8-ftp php8-tokenizer php8-simplexml \
     sudo vim tmux git procps wget sed grep openssh-keygen \
     mariadb mariadb-server-utils mysql-client \
     php8-intl php8-bcmath php8-dom php8-mbstring php8-xmlreader  && apk add -u musl && \
     rm -rf /var/cache/apk/*
+
+# not found: php8-apcu php8-mcrypt 
+
+RUN ln -s /usr/bin/php8 /usr/bin/php
 
 # removed
 #  libjpeg-turbo-dev php8-pdo php8-pdo_mysql git 
