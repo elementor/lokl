@@ -30,7 +30,7 @@ chown -R nginx:www-data /usr/html
 
 # start php-fpm
 mkdir -p /usr/logs/php-fpm
-php-fpm7
+php-fpm8
 
 
 # start mysql and send to background
