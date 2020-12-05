@@ -80,8 +80,8 @@ manage your backups.
 #### Useful File Locations
 
 * `/usr/html` - web root where WordPress is installed
+* PHPMyAdmin - now available: open via Lokl interactive script
 * Web based terminl - coming soon at mysite.localhost:port/ssh
-* PHPMyAdmin - coming soon at mysite.localhost:port/ssh
 
 
 ## Built With
@@ -90,6 +90,18 @@ manage your backups.
 * PHP-FPM
 * Nginx
 * MariaDB
+
+## Development
+
+I've thrown some development aids into `./scripts` and `./build`, see script's
+ comments for details. Things like:
+
+ - compiling all SSG plugins from latest sources 
+ - building Docker images with certain tags
+ - deleting all Docker images and containers
+
+`./scripts` mostly for scripts which get copied into the containers, with
+ `./build` for scripts used during development.
 
 ## Find Us
 
