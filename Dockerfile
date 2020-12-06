@@ -11,7 +11,7 @@ RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     freetype-dev  libpng-dev \
     php8-fpm php8-json php8-zlib php8-xml  php8-phar php8-openssl \
     php8-mysqli php8-session \
-    php8-gd php8-iconv php8-gmp php8-zip \
+    php8-gd php8-iconv php8-gmp php8-zip php8-fileinfo \
     php8-curl php8-opcache php8-ctype php8-ftp php8-tokenizer php8-simplexml \
     sudo vim tmux git procps wget sed grep openssh-keygen \
     mariadb mariadb-server-utils mysql-client \
