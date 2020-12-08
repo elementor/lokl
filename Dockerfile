@@ -18,6 +18,10 @@ RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     php8-intl php8-bcmath php8-dom php8-mbstring php8-xmlreader php8-xmlwriter && apk add -u musl && \
     rm -rf /var/cache/apk/*
 
+RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
+    composer && \
+    rm -rf /var/cache/apk/*
+
 # not found: php8-apcu php8-mcrypt 
 
 RUN ln -s /usr/bin/php8 /usr/bin/php
@@ -31,7 +35,8 @@ RUN sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php8/php.ini && \
     sed -i 's/expose_php = On/expose_php = Off/g' /etc/php8/php.ini && \
     sed -i "s/nginx:x:100:101:nginx:\/var\/lib\/nginx:\/sbin\/nologin/nginx:x:100:101:nginx:\/usr:\/bin\/bash/g" /etc/passwd && \
     sed -i "s/nginx:x:100:101:nginx:\/var\/lib\/nginx:\/sbin\/nologin/nginx:x:100:101:nginx:\/usr:\/bin\/bash/g" /etc/passwd- && \
-    ln -s /sbin/php-fpm7 /sbin/php-fpm
+    # dubious about this one - seems to have been fine without
+    ln -s /sbin/php-fpm8 /sbin/php-fpm
 
 ADD conf/nginx.conf /etc/nginx/
 ADD conf/php-fpm.conf /etc/php8/
