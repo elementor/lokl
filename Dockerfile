@@ -13,7 +13,7 @@ RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     php8-mysqli php8-session \
     php8-gd php8-iconv php8-gmp php8-zip php8-fileinfo \
     php8-curl php8-opcache php8-ctype php8-ftp php8-tokenizer php8-simplexml \
-    sudo vim tmux git procps wget sed grep openssh-keygen \
+    sudo vim tmux git procps wget sed grep openssh-keygen openssh-keygen \
     mariadb mariadb-server-utils mysql-client \
     php8-intl php8-bcmath php8-dom php8-mbstring php8-xmlreader php8-xmlwriter && apk add -u musl && \
     rm -rf /var/cache/apk/*
