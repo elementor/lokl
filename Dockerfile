@@ -26,12 +26,10 @@ RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
 RUN rm /usr/bin/php && \
     ln -s /usr/bin/php8 /usr/bin/php
 
-# not found: php8-apcu php8-mcrypt 
-
-RUN ln -s /usr/bin/php8 /usr/bin/php
+# NOTE: not found since 7 > 8 upgrade: php8-apcu php8-mcrypt 
 
 # removed
-#  libjpeg-turbo-dev php8-pdo php8-pdo_mysql git 
+#  libjpeg-turbo-dev php8-pdo php8-pdo_mysql 
 
 RUN sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php8/php.ini && \
     sed -i 's/memory_limit = 128M/memory_limit = -1/g' /etc/php8/php.ini && \ 
