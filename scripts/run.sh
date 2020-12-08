@@ -1,12 +1,13 @@
 #!/bin/sh
 
-echo 'running script'
+echo 'Running provisioning script'
 
 # sitename for subdomain available as $N, port as $P 
 name="$N"
 port="$P"
 
-# set WP site URL
+# use public DNS to workaround sporadic Docker issues
+echo 'nameserver 8.8.4.4' > /etc/resolv.conf
 
 # set port in nginx
 sed -i "s/NGINX_LISTEN_PORT/$port/g" /etc/nginx/nginx.conf
