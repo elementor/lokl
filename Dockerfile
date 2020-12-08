@@ -22,6 +22,10 @@ RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     composer && \
     rm -rf /var/cache/apk/*
 
+# RM PHP7 and link PHP8 after composer install
+RUN rm /usr/bin/php \
+    ln -s /usr/bin/php8 /usr/bin/php
+
 # not found: php8-apcu php8-mcrypt 
 
 RUN ln -s /usr/bin/php8 /usr/bin/php
