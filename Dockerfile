@@ -35,6 +35,7 @@ RUN sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php8/php.ini && \
     sed -i 's/memory_limit = 128M/memory_limit = -1/g' /etc/php8/php.ini && \ 
     sed -i 's/max_execution_time = 30/max_execution_time = 0/g' /etc/php8/php.ini && \ 
     sed -i 's/expose_php = On/expose_php = Off/g' /etc/php8/php.ini && \
+    # do away with the nginx user stuff if running as root? \
     sed -i "s/nginx:x:100:101:nginx:\/var\/lib\/nginx:\/sbin\/nologin/nginx:x:100:101:nginx:\/usr:\/bin\/bash/g" /etc/passwd && \
     sed -i "s/nginx:x:100:101:nginx:\/var\/lib\/nginx:\/sbin\/nologin/nginx:x:100:101:nginx:\/usr:\/bin\/bash/g" /etc/passwd- && \
     # dubious about this one - seems to have been fine without
@@ -53,9 +54,10 @@ ADD scripts/mysql_user.sql /
 ADD scripts/install_default_plugins.sh /
 RUN chmod +x /run.sh && \
     chmod +x /backup_site.sh && \
-    chmod +x /installers/wp-cli.phar && mv installers/wp-cli.phar /usr/bin/wp && chown nginx:nginx /usr/bin/wp
+    chmod +x /installers/wp-cli.phar && mv installers/wp-cli.phar /usr/bin/wp && chown root:root /usr/bin/wp
 
 # allow nginx user run WP-CLI commands
+# todo, replace with alias of `wp` to `wp --allow-root`
 RUN echo 'root ALL=(nginx) NOPASSWD: /usr/local/bin/wp' >> /etc/sudoers
 # prevent warning when running sudo
 RUN echo "Set disable_coredump false" >> /etc/sudo.conf
@@ -97,7 +99,8 @@ RUN sh /install_default_plugins.sh
 RUN rm -Rf /installers
 
 # set web root permissions
-RUN chown -R nginx:www-data /usr/html/
+# TODO: no longer needed if all root?
+RUN chown -R root:root /usr/html/
 
 EXPOSE 4000-5000
 # EXPOSE 4444
