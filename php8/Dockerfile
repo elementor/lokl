@@ -41,17 +41,17 @@ RUN sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php8/php.ini && \
     # dubious about this one - seems to have been fine without
     ln -s /sbin/php-fpm8 /sbin/php-fpm
 
-ADD conf/nginx.conf /etc/nginx/
-ADD conf/php-fpm.conf /etc/php8/
-ADD conf/.vimrc /root/
-ADD conf/.tmux.conf /root/
-ADD scripts/run.sh /
-ADD scripts/backup_site.sh /
-ADD installers /installers
-ADD scripts/mysql_setup.sql /
-ADD scripts/mysql_user.sql /
-ADD scripts/mysql_user.sql /
-ADD scripts/install_default_plugins.sh /
+ADD ./php8/conf/nginx.conf /etc/nginx/
+ADD ./php8/conf/php-fpm.conf /etc/php8/
+ADD ./php8/conf/.vimrc /root/
+ADD ./php8/conf/.tmux.conf /root/
+ADD ./php8/scripts/run.sh /
+ADD ./php8/scripts/backup_site.sh /
+ADD ./php8/installers /installers
+ADD ./php8/scripts/mysql_setup.sql /
+ADD ./scripts/mysql_user.sql /
+ADD ./scripts/mysql_user.sql /
+ADD ./scripts/install_default_plugins.sh /
 RUN chmod +x /run.sh && \
     chmod +x /backup_site.sh && \
     chmod +x /installers/wp-cli.phar && mv installers/wp-cli.phar /usr/bin/wp && chown root:root /usr/bin/wp
