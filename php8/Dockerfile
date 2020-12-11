@@ -49,9 +49,9 @@ ADD ./php8/scripts/run.sh /
 ADD ./php8/scripts/backup_site.sh /
 ADD ./php8/installers /installers
 ADD ./php8/scripts/mysql_setup.sql /
-ADD ./scripts/mysql_user.sql /
-ADD ./scripts/mysql_user.sql /
-ADD ./scripts/install_default_plugins.sh /
+ADD ./php8/scripts/mysql_user.sql /
+ADD ./php8/scripts/mysql_user.sql /
+ADD ./php8/scripts/install_default_plugins.sh /
 RUN chmod +x /run.sh && \
     chmod +x /backup_site.sh && \
     chmod +x /installers/wp-cli.phar && mv installers/wp-cli.phar /usr/bin/wp && chown root:root /usr/bin/wp
