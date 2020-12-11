@@ -31,7 +31,8 @@ chown -R nginx:www-data /usr/html
 
 # start php-fpm
 mkdir -p /usr/logs/php-fpm
-php-fpm8
+# allow to run as root user
+php-fpm8 -R
 
 
 # start mysql and send to background
