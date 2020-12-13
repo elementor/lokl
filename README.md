@@ -115,10 +115,8 @@ To allow for a faster boot time, we'll do the heavy lifting of provisioning our
  - copies files from host to image for use during first provisioning to build
  our *base* image and for subsequent running of containers using that image 
 
-Something like:
-
-
 `docker build -f php8/Dockerfile -t lokl/lokl:php8base . --force-rm --no-cache`
+`docker build -f php7/Dockerfile -t lokl/lokl:php7base . --force-rm --no-cache`
 
 The result of this build step is an image tagged like `php8base`
 
@@ -130,12 +128,14 @@ From this image, we'll run an instance from which to build our actual image,
 And set our sitename to `php8base`, making it easy to rewrite later. 
 
 `docker rm --force php8base`
+`docker rm --force php7base`
 `docker run -e N="php8base" -e P="3465" --name="php8base" -p "3465":"3465" -d lokl/lokl:"php8base"`
 `docker run -e N="php7base" -e P="3466" --name="php7base" -p "3466":"3466" -d lokl/lokl:"php7base"`
 
 Tail logs on this to know about when it's ready:
 
 `docker logs -f php8base`
+`docker logs -f php7base`
 
 #### Step 3
 
@@ -143,6 +143,7 @@ To build our new image using this container as a point in time snapshot, with
  all of our heavy provisioning done:
 
 `docker commit php8base lokl/lokl:php8`
+`docker commit php7base lokl/lokl:php7`
 
 And there, we should our ready to run image.
 
