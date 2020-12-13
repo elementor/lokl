@@ -1,9 +1,6 @@
 FROM alpine:edge
 
 ENV TERM="xterm"
-# allow phpMyAdmin auto-login
-# ENV PMA_USER="root"
-# ENV PMA_PASSWORD="banana"
 
 RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     bash curl less nginx ca-certificates tzdata zip curl \
