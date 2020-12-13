@@ -3,13 +3,7 @@
 # Script to build all latest snapshots of WP2Static core and add-ons
 #   and include those in Lokl's default plugins to install and activate
 
-# pseudo-code
-
 # list of each WP2Static project's repos:
-#   ie leonstafford/wp2static
-#      leonstafford/wp2static-addon-s3
-#      ...
-
 WP2STATIC_REPOS="leonstafford/wp2static
 leonstafford/wp2static-addon-s3
 leonstafford/wp2static-addon-zip
@@ -23,7 +17,7 @@ rm -Rf /tmp/wp2staticloklbuildcache
 mkdir -p /tmp/wp2staticloklbuildcache
 
 # rm existing versioned WP2Static plugins from Lokl image builder
-cd "$HOME/lokl/installers/default_plugins/" || exit 1
+cd "$HOME/lokl/php8/installers/default_plugins/" || exit 1
 rm -f wp2static*.zip
 
 cd /tmp/wp2staticloklbuildcache || exit 1
@@ -61,7 +55,7 @@ do
   composer build "$DIRNAME" || exit 1
 
   # cp installer to ./installers/default_plugins
-  cp "$HOME/Downloads/$DIRNAME.zip" "$HOME/lokl/installers/default_plugins/"
+  cp "$HOME/Downloads/$DIRNAME.zip" "$HOME/lokl/php8/installers/default_plugins/"
 
   # adjust run script to use ./installers/default_plugins/activate vs install_only
 
@@ -72,6 +66,4 @@ do
 
 
 done
-
-
 
