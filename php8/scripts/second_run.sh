@@ -51,6 +51,9 @@ wp search-replace "$OLD_SITE_HOST_PORT" "localhost:$port" --skip-columns=guid
 mkdir -p /usr/logs/nginx
 mkdir -p /tmp/nginx
 
+# mark as third run
+touch /firstrun
+
 # TODO: does nginx need to be reload here?
 # nginx
 nginx -s reload -c /etc/nginx/nginx.conf

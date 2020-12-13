@@ -158,7 +158,8 @@ We want to perform the least amount of processes when a user is running the
 Docker does provide the ability to modify the image's `CMD` when launching a
  container, for now, I'd prefer to keep it easy for my brain to follow along
  with things by replacing the script's contents once used, with the contents of
- other files named `second_run`, `third_run`, etc. 
+ other files named `second_run`, `third_run`, etc. Hmm, that didn't work, let's
+ try checking for existence of some files instead...
 
 ## Find Us
 
