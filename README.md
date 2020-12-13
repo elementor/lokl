@@ -22,7 +22,7 @@ In order to run this container you'll need docker installed.
 If you want to take advantage of the full convenience of Lokl, [download the
  management script](https://github.com/lokl-dev/go) or simply run:
 
-`\sh -c "$(curl -sSl 'https://lokl.dev/go?v=3')"`
+`\sh -c "$(curl -sSl 'https://lokl.dev/go?v=4')"`
 
 to launch the Lokl management script to start or manage new WordPress sites.
 
@@ -102,6 +102,63 @@ I've thrown some development aids into `./scripts` and `./build`, see script's
 
 `./scripts` mostly for scripts which get copied into the containers, with
  `./build` for scripts used during development.
+
+### Multi-step Docker image building
+
+#### Step 1
+
+To allow for a faster boot time, we'll do the heavy lifting of provisioning our
+ custom environment in a *base image*. This starts with a base Alpine Docker
+ image and a Dockerfile, which  applies the following:
+
+ - installs extra packages we'll need, via `apk add` or other means
+ - copies files from host to image for use during first provisioning to build
+ our *base* image and for subsequent running of containers using that image 
+
+Something like:
+
+
+`docker build -f php8/Dockerfile -t lokl/lokl:php8base . --force-rm --no-cache`
+
+The result of this build step is an image tagged like `php8base`
+
+#### Step 2
+
+From this image, we'll run an instance from which to build our actual image,
+ from which users' containers will be run.
+
+Here, we'll use the Lokl "Go" interactive script:
+
+`sh go.sh`
+
+And set our sitename to `php8basewebsite`, making it easy to rewrite later. 
+
+#### Step 3
+
+To build our new image using this container as a point in time snapshot, with
+ all of our heavy provisioning done:
+
+`docker commit php8basewebsite lokl/lokl:php8`
+
+And there, we should our ready to run image.
+
+#### Running the provisioned image
+
+We want to perform the least amount of processes when a user is running the
+ container for the first time. We also want to perform these modifications to
+ the container only once, including:
+
+ - adjusting the env vars for the sitename and port from the base image's
+ - adjusting the WordPress Site Name, Site URL and any references to the default
+ URL from the base image
+ - replacing the image's `CMD` script's contents, so that it doesn't get called
+  when a user launches the container again after it's been stopped, or host
+  machine rebooted.
+
+Docker does provide the ability to modify the image's `CMD` when launching a
+ container, for now, I'd prefer to keep it easy for my brain to follow along
+ with things by replacing the script's contents once used, with the contents of
+ other files named `second_run`, `third_run`, etc. 
 
 ## Find Us
 
