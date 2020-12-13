@@ -21,8 +21,7 @@ port="$P"
 # update port in nginx.conf (replace whole matching line, keep comment)
 sed -i "/MAIN_NGINX_LISTEN_LINE/c\listen    $port; # MAIN_NGINX_LISTEN_LINE" /etc/nginx/nginx.conf
 
-
-chown -R nginx:www-data /usr/html
+cat /etc/nginx/nginx.conf
 
 # start php-fpm
 mkdir -p /usr/logs/php-fpm
@@ -32,6 +31,15 @@ php-fpm8 -R
 
 # TODO: mysql should already be running? else, at least it's already setup
 # and we can re-use start n wait commands from first run script
+
+# start mysql and send to background
+exec /usr/bin/mysqld --user=root &
+
+# wait for mysql to be ready
+while ! mysqladmin ping -h localhost --silent; do
+    echo 'waiting for mysql to be available...'
+    sleep 1
+done
 
 # capture old url for rewriting
 OLD_SITE_URL="$(wp option get siteurl)" # something like http://localhost:3456
@@ -45,15 +53,16 @@ wp option update siteurl "http://localhost:$port"
 wp option update blogname "$name: Lokl WordPress"
 
 # rewrite any old URL references
-wp search-replace "$OLD_SITE_HOST_PORT" "localhost:$port" --skip-columns=guid
+# TODO: check why this was failing (php8?, bad args?)
+# wp search-replace "$OLD_SITE_HOST_PORT" "localhost:$port" --skip-columns=guid
 
 # start nginx
 mkdir -p /usr/logs/nginx
 mkdir -p /tmp/nginx
 
 # mark as third run
-touch /firstrun
+touch /third_run
 
 # TODO: does nginx need to be reload here?
 # nginx
-nginx -s reload -c /etc/nginx/nginx.conf
+# nginx -s reload -c /etc/nginx/nginx.conf

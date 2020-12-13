@@ -127,18 +127,17 @@ The result of this build step is an image tagged like `php8base`
 From this image, we'll run an instance from which to build our actual image,
  from which users' containers will be run.
 
-Here, we'll use the Lokl "Go" interactive script:
+And set our sitename to `php8base`, making it easy to rewrite later. 
 
-`sh go.sh`
-
-And set our sitename to `php8basewebsite`, making it easy to rewrite later. 
+`docker rm --force phpbase`
+`docker run -e N="php8base" -e P="3465" --name="php8base" -p "3465":"3465" -d lokl/lokl:"php8base"`
 
 #### Step 3
 
 To build our new image using this container as a point in time snapshot, with
  all of our heavy provisioning done:
 
-`docker commit php8basewebsite lokl/lokl:php8`
+`docker commit php8base lokl/lokl:php8`
 
 And there, we should our ready to run image.
 
