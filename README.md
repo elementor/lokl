@@ -129,8 +129,12 @@ From this image, we'll run an instance from which to build our actual image,
 
 And set our sitename to `php8base`, making it easy to rewrite later. 
 
-`docker rm --force phpbase`
+`docker rm --force php8base`
 `docker run -e N="php8base" -e P="3465" --name="php8base" -p "3465":"3465" -d lokl/lokl:"php8base"`
+
+Tail logs on this to know about when it's ready:
+
+`docker logs -f php8base`
 
 #### Step 3
 

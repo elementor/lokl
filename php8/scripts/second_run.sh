@@ -56,13 +56,10 @@ wp option update blogname "$name: Lokl WordPress"
 # TODO: check why this was failing (php8?, bad args?)
 # wp search-replace "$OLD_SITE_HOST_PORT" "localhost:$port" --skip-columns=guid
 
-# start nginx
-mkdir -p /usr/logs/nginx
-mkdir -p /tmp/nginx
-
 # mark as third run
+rm /second_run
 touch /third_run
 
 # TODO: does nginx need to be reload here?
-# nginx
+nginx
 # nginx -s reload -c /etc/nginx/nginx.conf
