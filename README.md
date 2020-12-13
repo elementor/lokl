@@ -131,6 +131,7 @@ And set our sitename to `php8base`, making it easy to rewrite later.
 
 `docker rm --force php8base`
 `docker run -e N="php8base" -e P="3465" --name="php8base" -p "3465":"3465" -d lokl/lokl:"php8base"`
+`docker run -e N="php7base" -e P="3466" --name="php7base" -p "3466":"3466" -d lokl/lokl:"php7base"`
 
 Tail logs on this to know about when it's ready:
 

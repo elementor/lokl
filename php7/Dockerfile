@@ -33,7 +33,7 @@ RUN sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php7/php.ini && \
     sed -i "s/nginx:x:100:101:nginx:\/var\/lib\/nginx:\/sbin\/nologin/nginx:x:100:101:nginx:\/usr:\/bin\/bash/g" /etc/passwd && \
     sed -i "s/nginx:x:100:101:nginx:\/var\/lib\/nginx:\/sbin\/nologin/nginx:x:100:101:nginx:\/usr:\/bin\/bash/g" /etc/passwd- && \
     # dubious about this one - seems to have been fine without
-    ln -s /sbin/php-fpm8 /sbin/php-fpm
+    ln -s /sbin/php-fpm7 /sbin/php-fpm
 
 ADD ./php7/conf/nginx.conf /etc/nginx/
 ADD ./php7/conf/php-fpm.conf /etc/php7/

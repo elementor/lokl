@@ -26,7 +26,7 @@ cat /etc/nginx/nginx.conf
 # start php-fpm
 mkdir -p /usr/logs/php-fpm
 # allow to run as root user
-php-fpm8 -R
+php-fpm7 -R
 
 
 # TODO: mysql should already be running? else, at least it's already setup

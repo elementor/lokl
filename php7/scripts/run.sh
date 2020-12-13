@@ -41,7 +41,7 @@ else
   # start php-fpm
   mkdir -p /usr/logs/php-fpm
   # allow to run as root user
-  php-fpm8 -R
+  php-fpm7 -R
 
 
   # start mysql and send to background
