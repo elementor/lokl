@@ -43,6 +43,7 @@ ADD ./php8/conf/php-fpm.conf /etc/php8/
 ADD ./php8/conf/.vimrc /root/
 ADD ./php8/conf/.tmux.conf /root/
 ADD ./php8/scripts/run.sh /
+ADD ./php8/scripts/second_run.sh /
 ADD ./php8/scripts/backup_site.sh /
 ADD ./php8/installers /installers
 ADD ./php8/scripts/mysql_setup.sql /

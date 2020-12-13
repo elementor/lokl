@@ -73,8 +73,9 @@ wp plugin activate wp2static-addon-netlify
 # wp plugin activate wp2static-addon-advanced-crawler
 # wp plugin activate wp2static-addon-cloudflare-workers
 
-# TODO: change to magic link style from default theme
-# wp plugin activate auto-login
+# replace this image's CMD script with second_run
+cp /run.sh /first_run.sh # backup this script for auditing
+mv /second_run.sh /run.sh
 
 # start nginx
 mkdir -p /usr/logs/nginx
