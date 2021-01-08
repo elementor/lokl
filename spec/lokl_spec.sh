@@ -8,7 +8,7 @@ Describe 'Default Lokl website'
         # use spec helper for common commands
         create_lokl_site
 
-        docker exec -it THE_IMAGE sh -c \
+        docker exec -it lokltestsite sh -c \
           "wp wp2static option set deployment_method zip && wp wp2static detect && wp wp2static crawl && \
           wp wp2static post_process && wp wp2static deploy"
       }
