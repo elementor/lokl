@@ -3,12 +3,14 @@
 Describe 'Default Lokl website'
   Describe 'WP2Static'
     It 'generates zip of exported site files when'
-      run_docker_php${phpversion}
       
       configure_wp2static() {
+        # use spec helper for common commands
+        create_lokl_site
+
         docker exec -it THE_IMAGE sh -c \
-          'wp wp2static option set deployment_method zip && wp wp2static detect && wp wp2static crawl && \
-          wp wp2static post_process && wp wp2static deploy'
+          "wp wp2static option set deployment_method zip && wp wp2static detect && wp wp2static crawl && \
+          wp wp2static post_process && wp wp2static deploy"
       }
       
       zip_file_present() {
@@ -16,8 +18,9 @@ Describe 'Default Lokl website'
         # do some checks on the zip (size, num files, index content?)  
       }
       
-     When run configure_wp2static()
-     The output should satisfy zip_file_present  
+     When run configure_wp2static
+     The output should include 'something'
      The result of function zip_file_present should be true
+    End
   End
 End
