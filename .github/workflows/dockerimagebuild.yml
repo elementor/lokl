@@ -27,8 +27,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: build docker images
-      run: sh build_tools/build_new_php${{ matrix.php }}_image.sh
-
+      run: DOCKER_BUILDKIT=1 sh build_tools/build_new_php${{ matrix.php }}_image.sh
 
     - name: Check container spits out expected output for test commands 
       run: echo 'TBC'
