@@ -1,0 +1,34 @@
+name: dockerimagebuild
+
+on:
+  push:
+    branches:
+    - master
+    - develop
+  pull_request:
+    branches:
+    - master
+    - develop
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php: ["7", "8"]
+
+    name: PHP-${{ matrix.php }} 
+
+    steps:
+    - name: Install some dependecies
+      run: sudo apt-get install -qyy vim
+
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: build docker images
+      run: sh build_tools/build_new_php${{ matrix.php }}_image.sh
+
+
+    - name: Check container spits out expected output for test commands 
+      run: echo 'TBC'
