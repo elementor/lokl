@@ -5,7 +5,6 @@ on:
     branches:
     - master
     - develop
-    - feature/incl-latest-wp2statics
   pull_request:
     branches:
     - master
