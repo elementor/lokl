@@ -47,6 +47,10 @@ ADD ./php7/scripts/mysql_setup.sql /
 ADD ./php7/scripts/mysql_user.sql /
 ADD ./php7/scripts/mysql_user.sql /
 ADD ./php7/scripts/install_default_plugins.sh /
+
+# re issue: https://github.com/moby/moby/issues/37965
+RUN true
+
 RUN chmod +x /run.sh && \
     chmod +x /backup_site.sh && \
     chmod +x /installers/wp-cli.phar && mv installers/wp-cli.phar /usr/bin/wp && chown root:root /usr/bin/wp
