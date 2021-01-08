@@ -16,7 +16,6 @@ until docker logs php7base 2>&1 | grep 'processes'; do
     fi
 
     printf '.'
-    docker logs php7base
     attempt_counter=$((attempt_counter+1))
     sleep "$site_poll_sleep_duration"
 done

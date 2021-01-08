@@ -8,7 +8,7 @@ attempt_counter=0
 max_attempts="30"
 site_poll_sleep_duration="3"
 
-until docker logs -n 10 php8base 2>&1 | grep 'processes'; do
+until docker logs php8base 2>&1 | grep 'processes'; do
 
     if [ ${attempt_counter} -eq "${max_attempts}" ]; then
       echo "Timed out waiting for provisioning to complete..."
