@@ -5,10 +5,10 @@ ENV TERM="xterm"
 RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     bash curl less nginx ca-certificates tzdata zip curl \
     libmcrypt-dev zlib-dev gmp-dev \
-    freetype-dev  libpng-dev \
-    php7-fpm php7-json php7-zlib php7-xml  php7-phar php7-openssl \
+    freetype-dev libpng-dev \
+    php7-fpm php7-json php7-zlib php7-xml php7-phar php7-openssl \
     php7-mysqli php7-session \
-    php7-gd php7-iconv php7-gmp php7-zip php7-fileinfo \
+    php7-gd php7-iconv php7-gmp php7-zip php7-fileinfo php7-pdo_mysql \
     php7-curl php7-opcache php7-ctype php7-ftp php7-tokenizer php7-simplexml \
     sudo vim tmux git procps wget sed grep openssh-keygen openssh \
     mariadb mariadb-server-utils mysql-client \
@@ -23,7 +23,7 @@ RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
 # TODO: look at using docker-ext or pecl package within apk
 
 # removed
-#  libjpeg-turbo-dev php7-pdo php7-pdo_mysql 
+#  libjpeg-turbo-dev php7-pdo 
 
 RUN sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php7/php.ini && \
     sed -i 's/memory_limit = 128M/memory_limit = -1/g' /etc/php7/php.ini && \ 

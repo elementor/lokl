@@ -28,7 +28,7 @@ to launch the Lokl management script to start or manage new WordPress sites.
 
 #### Container Parameters
 
-We default to support ports in range 4000-5000.
+I default to support ports in range 4000-5000.
 
 Example run command:
 
@@ -134,6 +134,20 @@ And set our sitename to `php8base`, making it easy to rewrite later.
 
 Tail logs on this to know about when it's ready:
 
+```
+Currently, output like:
+
+Success: Activated 1 of 1 plugins.
+2021/01/08 06:38:26 [notice] 70#70: using the "epoll" event method
+2021/01/08 06:38:26 [notice] 70#70: nginx/1.18.0
+2021/01/08 06:38:26 [notice] 70#70: OS: Linux 4.19.121-linuxkit
+2021/01/08 06:38:26 [notice] 70#70: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2021/01/08 06:38:26 [notice] 70#70: start worker processes
+2021/01/08 06:38:26 [notice] 70#70: start worker process 71
+
+Can force some output to poll for, ie "Lokl php8base container has finished provisioning"
+```
+
 `docker logs -f php8base`
 `docker logs -f php7base`
 
@@ -149,8 +163,10 @@ And there, we should our ready to run image.
 
 #### Running the provisioned image
 
-We want to perform the least amount of processes when a user is running the
- container for the first time. We also want to perform these modifications to
+[Lokl CLI](https://github.com/lokl-cli) is my client for running an interactive wizard to create and manage Lokl sites. It can be run as an interactive wizard or instantiated with variables to skip the wizard and create a new site with specific details.
+
+I want to perform the least amount of processes when a user is running the
+ container for the first time. I also want to perform these modifications to
  the container only once, including:
 
  - adjusting the env vars for the sitename and port from the base image's

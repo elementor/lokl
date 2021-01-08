@@ -6,9 +6,9 @@ RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     bash curl less nginx ca-certificates tzdata zip curl \
     libmcrypt-dev zlib-dev gmp-dev \
     freetype-dev  libpng-dev \
-    php8-fpm php8-json php8-zlib php8-xml  php8-phar php8-openssl \
+    php8-fpm php8-json php8-zlib php8-xml php8-phar php8-openssl \
     php8-mysqli php8-session \
-    php8-gd php8-iconv php8-gmp php8-zip php8-fileinfo \
+    php8-gd php8-iconv php8-gmp php8-zip php8-fileinfo php8-pdo_mysql \
     php8-curl php8-opcache php8-ctype php8-ftp php8-tokenizer php8-simplexml \
     sudo vim tmux git procps wget sed grep openssh-keygen openssh \
     mariadb mariadb-server-utils mysql-client \
@@ -26,7 +26,7 @@ RUN rm /usr/bin/php && \
 # NOTE: not found since 7 > 8 upgrade: php8-apcu php8-mcrypt 
 
 # removed
-#  libjpeg-turbo-dev php8-pdo php8-pdo_mysql 
+#  libjpeg-turbo-dev php8-pdo
 
 RUN sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php8/php.ini && \
     sed -i 's/memory_limit = 128M/memory_limit = -1/g' /etc/php8/php.ini && \ 
