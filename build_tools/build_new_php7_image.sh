@@ -8,8 +8,7 @@ attempt_counter=0
 max_attempts="30"
 site_poll_sleep_duration="3"
 
-# until docker logs -n 10 php7base 2>&1 | grep 'processes'; do
-until docker logs -n 10 php7base 2>&1 | grep 'processes'; do
+until docker logs php7base 2>&1 | grep 'processes'; do
 
     if [ ${attempt_counter} -eq "${max_attempts}" ]; then
       echo "Timed out waiting for provisioning to complete..."
@@ -17,7 +16,7 @@ until docker logs -n 10 php7base 2>&1 | grep 'processes'; do
     fi
 
     printf '.'
-    docker logs -n 10 php7base
+    docker logs php7base
     attempt_counter=$((attempt_counter+1))
     sleep "$site_poll_sleep_duration"
 done
