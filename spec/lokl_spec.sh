@@ -12,7 +12,8 @@ Describe 'Default Lokl website'
         docker rm -f lokltestsite
 
         # run new container
-        export lokl_php_ver=php7
+        # export lokl_php_ver=php7
+        export lokl_php_ver=php8
         export lokl_site_name=lokltestsite
         export lokl_site_port=4444
 

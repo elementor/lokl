@@ -19,7 +19,13 @@ rm -Rf /tmp/wp2staticloklbuildcache
 mkdir -p /tmp/wp2staticloklbuildcache
 
 # rm existing versioned WP2Static plugins from Lokl image builder
+
+# PHP8
 cd "$HOME/lokl/php8/installers/default_plugins/" || exit 1
+rm -f wp2static*.zip
+
+# PHP7
+cd "$HOME/lokl/php7/installers/default_plugins/" || exit 1
 rm -f wp2static*.zip
 
 cd /tmp/wp2staticloklbuildcache || exit 1
@@ -57,7 +63,12 @@ do
   composer build "$DIRNAME" || exit 1
 
   # cp installer to ./installers/default_plugins
+
+  # PHP 8
   cp "$HOME/Downloads/$DIRNAME.zip" "$HOME/lokl/php8/installers/default_plugins/"
+
+  # PHP 7
+  cp "$HOME/Downloads/$DIRNAME.zip" "$HOME/lokl/php7/installers/default_plugins/"
 
   # adjust run script to use ./installers/default_plugins/activate vs install_only
 
