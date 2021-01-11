@@ -27,8 +27,6 @@ Describe 'Default Lokl website'
         # create site using noninteractively, using env vars
         sh cli.sh 
 
-        sleep 5
-
         docker exec -it lokltestsite sh -c \
           "wp wp2static addons toggle wp2static-addon-zip && wp wp2static full_workflow"
       }
@@ -41,16 +39,16 @@ Describe 'Default Lokl website'
         if wget -q --method=HEAD "$processed_site_zip";
          then
           echo 'found processed zip ' >> /tmp/testlog
-          return 0
+          echo 'ZIP FILE PRESENT'
          else
           echo 'NO processed zip ' >> /tmp/testlog
-          return 1
+          echo 'ERROR: NO ZIP FILE FOUND'
         fi
       }
       
      When call configure_wp2static
      The output should include 'Finished processing crawled site'
-     The result of function zip_file_present should be success
+     The result of function zip_file_present should eq 'ZIP FILE PRESENT'
     End
   End
 End
