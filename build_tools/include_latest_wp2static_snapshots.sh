@@ -7,10 +7,12 @@
 WP2STATIC_REPOS="leonstafford/wp2static
 leonstafford/wp2static-addon-s3
 leonstafford/wp2static-addon-zip
-leonstafford/wp2static-addon-advanced-crawling
 leonstafford/wp2static-addon-netlify
 leonstafford/wp2static-addon-cloudflare-workers
 "
+
+# TODO: guzzle it for php8 compat
+# leonstafford/wp2static-addon-advanced-crawling
 
 # cleanup existing temp repos
 rm -Rf /tmp/wp2staticloklbuildcache
