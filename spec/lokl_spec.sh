@@ -30,10 +30,7 @@ Describe 'Default Lokl website'
         sleep 5
 
         docker exec -it lokltestsite sh -c \
-          "wp wp2static addons toggle wp2static-addon-zip &&" \
-          " wp wp2static options set deployment_method zip &&" \
-          " wp wp2static detect && wp wp2static crawl &&" \
-          " wp wp2static post_process && wp wp2static deploy"
+          "wp wp2static addons toggle wp2static-addon-zip && wp wp2static full_workflow"
       }
       
       zip_file_present() {
