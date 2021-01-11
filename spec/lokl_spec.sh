@@ -17,19 +17,23 @@ Describe 'Default Lokl website'
         export lokl_site_name=lokltestsite
         export lokl_site_port=4444
 
-        echo 'something ' >> /tmp/testlog
+        echo '' >> /tmp/testlog
 
         env | grep lokl_ >> /tmp/testlog
 
+        # pull down latest version of cript
         wget 'https://raw.githubusercontent.com/leonstafford/lokl-cli/master/cli.sh'
 
+        # create site using noninteractively, using env vars
         sh cli.sh 
 
+        sleep 5
+
         docker exec -it lokltestsite sh -c \
-          "wp wp2static addons enable wp2static-addon-zip &&" \
-          "wp wp2static options set deployment_method zip &&" \
-          "wp wp2static detect && wp wp2static crawl &&" \
-          "wp wp2static post_process && wp wp2static deploy"
+          "wp wp2static addons toggle wp2static-addon-zip &&" \
+          " wp wp2static options set deployment_method zip &&" \
+          " wp wp2static detect && wp wp2static crawl &&" \
+          " wp wp2static post_process && wp wp2static deploy"
       }
       
       zip_file_present() {
