@@ -1,5 +1,7 @@
 #!/bin/sh
 
+LOKL_RELEASE_VERSION="5.0.0-dev"
+
 docker build -f php8/Dockerfile -t lokl/lokl:php8base . --force-rm --no-cache
 docker rm --force php8base
 docker run -e N="php8base" -e P="3465" --name="php8base" -p "3465":"3465" -d lokl/lokl:"php8base"
@@ -20,4 +22,4 @@ until docker logs php8base 2>&1 | grep 'processes'; do
     sleep "$site_poll_sleep_duration"
 done
 
-docker commit php8base lokl/lokl:php8
+docker commit php8base "lokl/lokl:php8-$LOKL_RELEASE_VERSION"
