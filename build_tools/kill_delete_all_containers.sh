@@ -11,6 +11,6 @@
 
 # kill and remove all
 
-docker kill $(docker ps -q)
+docker kill "$(docker ps -q)"
 
-docker rm $(docker ps -a -q)
+docker rm "$(docker ps -a -q)"

@@ -56,8 +56,9 @@ else
   # add root@localhost user
   /usr/bin/mysql < /mysql_user.sql
 
-  cd /usr/html
   # setup WP
+  cd /usr/html || exit
+
   sudo -u nginx wp core config --dbhost=localhost --dbname=wordpress --dbuser=root --dbpass=banana
   rm wp-config-sample.php
 

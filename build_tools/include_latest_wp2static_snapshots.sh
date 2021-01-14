@@ -33,7 +33,7 @@ cd /tmp/wp2staticloklbuildcache || exit 1
 # iterate each repo
 for REPO in $WP2STATIC_REPOS
 do
-  DIRNAME="$(echo $REPO | cut -d\/ -f2)"
+  DIRNAME="$(echo "$REPO" | cut -d\/ -f2)"
   echo ""
   echo "##############################################"
   echo ""
@@ -54,7 +54,8 @@ do
   # exit if non-zero
   composer i -q || exit 1
   composer test || exit 1
-  composer coverage || echo "No coverage command for this repo\n"
+  composer coverage || echo "No coverage command for this repo"
+  echo ""
 
   # rm ~/Downloads/wp2static-addon-s3.zip
   rm -f "$HOME/Downloads/$DIRNAME.zip"

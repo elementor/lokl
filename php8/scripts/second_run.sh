@@ -42,10 +42,11 @@ while ! mysqladmin ping -h localhost --silent; do
 done
 
 # capture old url for rewriting
-OLD_SITE_URL="$(wp option get siteurl)" # something like http://localhost:3456
+# TODO: revisit this
+# OLD_SITE_URL="$(wp option get siteurl)" # something like http://localhost:3456
 
 # remove protocol for better search-replace
-OLD_SITE_HOST_PORT="${OLD_SITE_URL##*/}" # localhost:3456
+#OLD_SITE_HOST_PORT="${OLD_SITE_URL##*/}" # localhost:3456
 
 # Change site name, url, home and rewrite URLs
 wp option update home "http://localhost:$port"

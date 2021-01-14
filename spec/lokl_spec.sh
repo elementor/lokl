@@ -13,7 +13,7 @@ Describe 'Default Lokl website'
 
         # run new container
         # export lokl_php_ver=php7
-        export lokl_php_ver=php8
+        export lokl_php_ver="php8"
         export lokl_site_name=lokltestsite
         export lokl_site_port=4444
 
@@ -21,7 +21,7 @@ Describe 'Default Lokl website'
 
         env | grep lokl_ >> /tmp/testlog
 
-        # pull down latest version of cript
+        # pull down latest version of script
         wget 'https://raw.githubusercontent.com/leonstafford/lokl-cli/master/cli.sh'
 
         # create site using noninteractively, using env vars

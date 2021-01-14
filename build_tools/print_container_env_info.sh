@@ -11,7 +11,8 @@ echo "        Used to show what a release version contains"
 echo ""
 echo "###############################################################"
 
-
+# TODO: make POSIX friendly
+# shellcheck disable=SC2039
 read -r -d '' PRINT_INFO_SCRIPT <<'ENDSCRIPT'
   echo "" && \
   echo "### WordPress version:" && \
