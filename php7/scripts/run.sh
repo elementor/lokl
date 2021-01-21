@@ -30,13 +30,13 @@ else
     echo "[i] Creating directories..."
     mkdir -p /usr/html
     echo "[i] Fixing permissions..."
-    chown -R nginx:nginx /usr/html
+    chown -R root:root /usr/html
   else
     echo "[i] Fixing permissions..."
-    chown -R nginx:nginx /usr/html
+    chown -R root:root /usr/html
   fi
 
-  chown -R nginx:www-data /usr/html
+  chown -R root:root /usr/html
 
   # start php-fpm
   mkdir -p /usr/logs/php-fpm
@@ -89,7 +89,7 @@ else
   # start nginx
   mkdir -p /usr/logs/nginx
   mkdir -p /tmp/nginx
-  chown nginx /tmp/nginx
+  chown root /tmp/nginx
   nginx
 fi
 

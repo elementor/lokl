@@ -4,7 +4,7 @@ LOKL_RELEASE_VERSION="5.0.0-rc1"
 
 docker build -f php8/Dockerfile -t lokl/lokl:php8base . --force-rm --no-cache
 docker rm --force php8base
-docker run -e N="php8base" -e P="3465" --name="php8base" -p "3465":"3465" -d lokl/lokl:"php8base"
+docker run -e N="php8base" -e P="3465" --name="php8base" -p "3465:3465" -d lokl/lokl:"php8base"
 
 attempt_counter=0
 max_attempts="30"

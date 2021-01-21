@@ -4,7 +4,7 @@ LOKL_RELEASE_VERSION="5.0.0-rc1"
 
 docker build -f php7/Dockerfile -t lokl/lokl:php7base . --force-rm --no-cache
 docker rm --force php7base
-docker run -e N="php7base" -e P="3466" --name="php7base" -p "3466":"3466" -d lokl/lokl:"php7base"
+docker run -e N="php7base" -e P="3466" --name="php7base" -p "3466:3466" -d lokl/lokl:"php7base"
 
 attempt_counter=0
 max_attempts="30"
