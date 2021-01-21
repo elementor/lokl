@@ -33,6 +33,7 @@ cd /tmp/wp2staticloklbuildcache || exit 1
 # iterate each repo
 for REPO in $WP2STATIC_REPOS
 do
+  # shellcheck disable=SC1001
   DIRNAME="$(echo "$REPO" | cut -d\/ -f2)"
   echo ""
   echo "##############################################"
