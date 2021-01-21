@@ -10,7 +10,7 @@ RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     php8-mysqli php8-session \
     php8-gd php8-iconv php8-gmp php8-zip php8-fileinfo php8-pdo_mysql \
     php8-curl php8-opcache php8-ctype php8-ftp php8-tokenizer php8-simplexml \
-    sudo vim tmux git procps wget sed grep openssh-keygen openssh \
+    vim tmux git procps wget sed grep openssh-keygen openssh \
     mariadb mariadb-server-utils mysql-client \
     php8-intl php8-bcmath php8-dom php8-mbstring php8-xmlreader php8-xmlwriter && apk add -u musl && \
     rm -rf /var/cache/apk/*
@@ -54,12 +54,6 @@ ADD ./php8/scripts/install_default_plugins.sh /
 RUN chmod +x /run.sh && \
     chmod +x /backup_site.sh && \
     chmod +x /installers/wp-cli.phar && mv installers/wp-cli.phar /usr/bin/wp && chown root:root /usr/bin/wp
-
-# allow nginx user run WP-CLI commands
-# todo, replace with alias of `wp` to `wp --allow-root`
-RUN echo 'root ALL=(nginx) NOPASSWD: /usr/local/bin/wp' >> /etc/sudoers
-# prevent warning when running sudo
-RUN echo "Set disable_coredump false" >> /etc/sudo.conf
 
 # mariadb setup
 RUN mkdir -p /run/mysqld

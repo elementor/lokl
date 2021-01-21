@@ -59,10 +59,10 @@ else
   # setup WP
   cd /usr/html || exit
 
-  sudo -u nginx wp core config --dbhost=localhost --dbname=wordpress --dbuser=root --dbpass=banana
+  wp core config --dbhost=localhost --dbname=wordpress --dbuser=root --dbpass=banana
   rm wp-config-sample.php
 
-  sudo -u nginx wp core install --url="http://localhost:$port" --title="$name: Lokl WordPress" --admin_user=admin --admin_password=admin --admin_email=me@example.com
+  wp core install --url="http://localhost:$port" --title="$name: Lokl WordPress" --admin_user=admin --admin_password=admin --admin_email=me@example.com
 
   wp rewrite structure '/%postname%/'
   wp option update blogdescription "Your fast, secure local WP environment"
