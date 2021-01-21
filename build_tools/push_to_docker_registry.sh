@@ -1,6 +1,6 @@
 #!/bin/sh
 
-LOKL_RELEASE_VERSION="5.0.0"
+LOKL_RELEASE_VERSION="5.0.0-rc1"
 
 # PHP 8
 docker push "lokl/lokl:php8-$LOKL_RELEASE_VERSION"
