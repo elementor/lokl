@@ -64,14 +64,14 @@ RUN mkdir -p /usr/html
 
 WORKDIR /usr/html
 # extract WordPress to web root
-RUN unzip -q /installers/wordpress-5.6.zip -d /tmp
+RUN unzip -q /installers/wordpress-5.7.1.zip -d /tmp
 RUN cp -r /tmp/wordpress/* /usr/html/
 RUN rm -Rf /tmp/wordpress
 
 # extract phpMyAdmin to /usr/html/phpmyadmin/
-RUN unzip -q /installers/phpMyAdmin-5.0.4-all-languages.zip -d /tmp
-RUN mv /tmp/phpMyAdmin-5.0.4-all-languages /usr/html/phpmyadmin/
-RUN rm -Rf /tmp/phpMyAdmin-5.0.4-all-languages
+RUN unzip -q /installers/phpMyAdmin-5.1.0-all-languages.zip -d /tmp
+RUN mv /tmp/phpMyAdmin-5.1.0-all-languages /usr/html/phpmyadmin/
+RUN rm -Rf /tmp/phpMyAdmin-5.1.0-all-languages
 
 # allow autologin for phpmyadmin
 RUN mv /usr/html/phpmyadmin/config.sample.inc.php /usr/html/phpmyadmin/config.inc.php
