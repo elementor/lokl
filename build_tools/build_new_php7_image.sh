@@ -1,6 +1,6 @@
 #!/bin/sh
 
-LOKL_RELEASE_VERSION="5.0.0-rc1"
+LOKL_RELEASE_VERSION="5.0.0-rc2"
 
 docker build -f php7/Dockerfile -t lokl/lokl:php7base . --force-rm --no-cache
 docker rm --force php7base
