@@ -115,8 +115,8 @@ To allow for a faster boot time, we'll do the heavy lifting of provisioning our
  - copies files from host to image for use during first provisioning to build
  our *base* image and for subsequent running of containers using that image 
 
-`docker build -f php8/Dockerfile -t lokl/lokl:php8base . --force-rm --no-cache`
-`docker build -f php7/Dockerfile -t lokl/lokl:php7base . --force-rm --no-cache`
+ - `docker build -f php8/Dockerfile -t lokl/lokl:php8base . --force-rm --no-cache`
+ - `docker build -f php7/Dockerfile -t lokl/lokl:php7base . --force-rm --no-cache`
 
 The result of this build step is an image tagged like `php8base`
 
