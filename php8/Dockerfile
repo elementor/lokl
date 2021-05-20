@@ -67,7 +67,7 @@ RUN mkdir -p /usr/html
 
 WORKDIR /usr/html
 # extract WordPress to web root
-RUN unzip -q /installers/wordpress-5.7.1.zip -d /tmp
+RUN unzip -q /installers/wordpress-5.7.2.zip -d /tmp
 RUN cp -r /tmp/wordpress/* /usr/html/
 RUN rm -Rf /tmp/wordpress
 

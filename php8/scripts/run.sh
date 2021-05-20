@@ -6,7 +6,8 @@ then
 elif [ -f /third_run ]
 then
   echo 'Running provisioning script (third, n+ run)'
-  # just launch daemon, don't change anything else
+  php-fpm8 -R
+  exec /usr/bin/mysqld --user=root &
   nginx
 else
   echo 'Running provisioning script (first run)'
@@ -81,8 +82,8 @@ else
   wp plugin activate wp2static-addon-zip
   wp plugin activate wp2static-addon-s3
   wp plugin activate wp2static-addon-netlify
+  wp plugin activate wp2static-addon-cloudflare-workers
   # wp plugin activate wp2static-addon-advanced-crawler
-  # wp plugin activate wp2static-addon-cloudflare-workers
 
   # mark this as first run
   touch /second_run
