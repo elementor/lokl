@@ -12,7 +12,7 @@ Describe 'Default Lokl website'
         docker rm -f lokltestsite
 
         # run new container
-        export lokl_php_ver="php8-5.0.0-rc1"
+        export lokl_php_ver="php8-5.0.0-rc2"
         # export lokl_php_ver="php7-5.0.0-rc1"
         export lokl_site_name=lokltestsite
         export lokl_site_port=4444
@@ -24,7 +24,7 @@ Describe 'Default Lokl website'
         cd /tmp || exit 1
 
         # create site using noninteractively, using env vars
-        sh -c "$(curl -sSl 'https://lokl.dev/cli-5.0.0-rc1')"
+        sh -c "$(curl -sSl 'https://lokl.dev/cli-5.0.0-rc2')"
 
         docker exec -it lokltestsite sh -c \
           "wp wp2static addons toggle wp2static-addon-zip && wp wp2static full_workflow"
