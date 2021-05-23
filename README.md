@@ -22,7 +22,7 @@ In order to run this container you'll need docker installed.
 If you want to take advantage of the full convenience of Lokl, [download the
  management script](https://github.com/lokl-dev/go) or simply run:
 
-`\sh -c "$(curl -sSl 'https://lokl.dev/go?v=4')"`
+`sh -c "$(curl -sSl 'https://lokl.dev/cli-5.0.0-rc2')"`
 
 to launch the Lokl management script to start or manage new WordPress sites.
 
