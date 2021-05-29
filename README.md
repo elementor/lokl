@@ -21,7 +21,7 @@ In order to run this container you'll need docker installed.
 
 The simplest way to get started, paste the following into a terminal to launch Lokl's interactive wizard:
 
-`sh -c "$(curl -sSl 'https://lokl.dev/cli-5.0.0-rc2')"`
+`sh -c "$(curl -sSl 'https://lokl.dev/cli-5.0.0')"`
 
 to launch the Lokl management script to start or manage new WordPress sites.
 
