@@ -19,77 +19,50 @@ In order to run this container you'll need docker installed.
 
 ## One-line instant WordPress instance
 
-If you want to take advantage of the full convenience of Lokl, [download the
- management script](https://github.com/lokl-dev/go) or simply run:
+The simplest way to get started, paste the following into a terminal to launch Lokl's interactive wizard:
 
 `sh -c "$(curl -sSl 'https://lokl.dev/cli-5.0.0-rc2')"`
 
 to launch the Lokl management script to start or manage new WordPress sites.
 
-#### Container Parameters
+### Site templates
 
-I default to support ports in range 4000-5000.
+From version 5.0.0, Lokl now supports site template files, which, if present, Lokl will allow you to choose as a template for your new site.
 
-Example run command:
+Currently, these allow specifying directories from your host machine to mount within your Lokl site's container. This makes it easier for those editing plugins/themes/site files on their local computer and having the changes apply immediately within their Lokl site.
 
-*Note: assuming your Docker environment is set to not require `sudo` prefixed to
- commands, else adjust accordingly.*
+Future enhancements to this templating will allow for things like specifying different sets of plugins/themes to auto-install in new Lokl sites.
 
-```
-docker run -e N="$LOKL_NAME" -e P="$LOKL_PORT" \                            
-  --name="$LOKL_NAME" -p "$LOKL_PORT":"$LOKL_PORT" \                        
-  -d lokl/lokl:"$LOKL_VERSION"   
-```
-
-Quickly launch a new WordPress local development environment, available at http://localhost:4000
-
-```shell
-name=clientsite1;port=4000; docker run -e N=$name -e P=$port --name=$name -p $port:$port -d lokl/lokl
-```
-
-Launch a bunch of new sites. Each site requires a unique name and port (within range `4000-5000`).
-
-```shell
-name=clientsite1;port=4000; docker run -e N=$name -e P=$port --name=$name -p $port:$port -d lokl/lokl
-name=myblog;port=4001; docker run -e N=$name -e P=$port --name=$name -p $port:$port -d lokl/lokl
-name=portfolio;port=4444; docker run -e N=$name -e P=$port --name=$name -p $port:$port -d lokl/lokl
-name=clientsite2;port=4321; docker run -e N=$name -e P=$port --name=$name -p $port:$port -d lokl/lokl
-```
-
-These sites will then be available at:
-
- - http://localhost:4000
- - http://localhost:4001
- - http://localhost:4444
- - http://localhost:4321
-
-Remembering your sites by port name is crazy, so best use Lokl's [management
- script](https://github.com/lokl-dev/go) instead!.
+An example site template file and usage instrutions are available within the [lokl-cli](https://github.com/leonstafford/lokl-cli) repository.
 
 
-#### Environment Variables
+#### Programmatic usage
 
-* `N` - name used for your lokl subdomain and container name
-* `P` - port your container will run on
+If you're familiar with Docker and bash, you can read through the source code of this repository and the [lokl-cli](https://github.com/leonstafford/lokl-cli)'s to see how I provision and control Lokl. 
 
-#### Volumes
+Any docs I write about that will be quickly out of date, so please refer to the code and ask me any specific questions.
 
-* No volumes. A decision to keep things simple. Use WP plugins or SSH to 
-manage your backups.
-
-#### Useful File Locations
+#### Useful File Locations/URLs
 
 * `/usr/html` - web root where WordPress is installed
-* PHPMyAdmin - now available: open via Lokl interactive script
-* Web based terminl - coming soon at mysite.localhost:port/ssh
+* WordPress admin - `/wp-admin/` (username: `admin` password: `admin`)
+* PHPMyAdmin - at `/phpmyadmin/` or open via Lokl interactive script
+* Web based terminal - coming soon at mysite.localhost:port/ssh
 
+## Built With/Contains
 
-## Built With
+Thanks to all the people involved in these amazing open source tools!
 
-* List the Alpine base image
+* Alpine Linux
 * PHP-FPM
 * Nginx
 * MariaDB
+* POSIX-compliant shell scripts
+* WP_CLI
+* shellcheck
+* shellspec
+* cURL
+* awk
 
 ## Development
 
@@ -104,6 +77,8 @@ I've thrown some development aids into `./scripts` and `./build`, see script's
  `./build` for scripts used during development.
 
 ### Multi-step Docker image building
+
+These are mostly notes for myself, which may be out of date. I try to scripts as much as possible vs rely on my own memory.
 
 #### Step 1
 
@@ -184,8 +159,11 @@ Docker does provide the ability to modify the image's `CMD` when launching a
 
 ## Find Us
 
+Well, it's mostly [me](https://ljs.dev) at this point, no organization or company behind this project, but here are some relevant URLs:
+
 * [GitHub](https://github.com/lokl-dev/lokl)
 * [Docker Hub](https://hub.docker.com/r/lokl/lokl/)
+* [Lokl homepage](https://lokl.dev)
 
 ## Contributing
 
@@ -215,6 +193,6 @@ This project is licensed under The Unlicense - do whatever you like with it!
 * Initial prototype used copy pasta from a few GH repos as I was trying 100 
 things to see if this was possible. Most of that was butchered by me and 
 little remains, maybe some of the apk package choices and conf file 
-substitutions, which will continue to be tweaked for most minimal containers.
+substitutions, which will continue to be tweaked for keeping containers minimal.
 
 
