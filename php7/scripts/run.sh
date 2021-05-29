@@ -67,8 +67,10 @@ else
 
   wp rewrite structure '/%postname%/'
   wp option update blogdescription "Your fast, secure local WP environment"
+  wp post update 1 --post_title="Getting started with Lokl"
   wp post update 1 --post_content="Use this site as your starting point or import content from an existing site. <a href='/wp-admin'>View Dashboard</a>"
-  wp post update 1 --post_title="Getting started"
+  wp option update page_on_front 1
+  wp option update show_on_front "page"
 
   # delete useless plugins
   wp plugin delete hello
