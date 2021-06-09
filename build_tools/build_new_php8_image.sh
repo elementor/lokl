@@ -1,6 +1,6 @@
 #!/bin/sh
 
-LOKL_RELEASE_VERSION="5.0.0"
+LOKL_RELEASE_VERSION="5.0.1-dev"
 
 docker build -f php8/Dockerfile -t lokl/lokl:php8base . --force-rm --no-cache
 docker rm --force php8base

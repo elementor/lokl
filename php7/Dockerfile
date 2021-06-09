@@ -7,7 +7,7 @@ RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     libmcrypt-dev zlib-dev gmp-dev \
     freetype-dev libpng-dev \
     php7-fpm php7-json php7-zlib php7-xml php7-phar php7-openssl \
-    php7-mysqli php7-session \
+    php7-mysqli php7-session php7-pecl-xdebug \
     php7-gd php7-iconv php7-gmp php7-zip php7-fileinfo php7-pdo_mysql \
     php7-curl php7-opcache php7-ctype php7-ftp php7-tokenizer php7-simplexml \
     vim tmux git procps wget sed grep openssh-keygen openssh \
@@ -29,6 +29,7 @@ RUN sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php7/php.ini && \
     sed -i 's/memory_limit = 128M/memory_limit = -1/g' /etc/php7/php.ini && \ 
     sed -i 's/max_execution_time = 30/max_execution_time = 0/g' /etc/php7/php.ini && \ 
     sed -i 's/expose_php = On/expose_php = Off/g' /etc/php7/php.ini && \
+    sed -i 's/;zend_extension=xdebug.so/zend_extension=xdebug.so/g' /etc/php7/conf.d/50_xdebug.ini && \
     # do away with the nginx user stuff if running as root? \
     sed -i "s/nginx:x:100:101:nginx:\/var\/lib\/nginx:\/sbin\/nologin/nginx:x:100:101:nginx:\/usr:\/bin\/bash/g" /etc/passwd && \
     sed -i "s/nginx:x:100:101:nginx:\/var\/lib\/nginx:\/sbin\/nologin/nginx:x:100:101:nginx:\/usr:\/bin\/bash/g" /etc/passwd- && \
