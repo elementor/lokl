@@ -1,6 +1,8 @@
 FROM alpine:edge
 
 ENV TERM="xterm"
+ENV XDEBUG_MODE="profile"
+ENV XDEBUG_CONFIG="output_dir=/tmp start_with_request=trigger trigger_value="
 
 RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     bash curl less nginx ca-certificates tzdata zip curl \
