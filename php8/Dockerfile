@@ -28,6 +28,16 @@ RUN rm /usr/bin/php && \
 # removed
 #  libjpeg-turbo-dev php8-pdo
 
+RUN git clone https://github.com/Imagick/imagick \
+  cd imagick \
+  apk add php8-dev gcc g++ imagemagic-dev \
+  phpize && ./configure \
+  make \
+  make install \
+  cd ../ \
+  rm -rf imagick \
+  apk add php8-imagick
+
 RUN sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php8/php.ini && \
     sed -i 's/memory_limit = 128M/memory_limit = -1/g' /etc/php8/php.ini && \ 
     sed -i 's/max_execution_time = 30/max_execution_time = 0/g' /etc/php8/php.ini && \ 

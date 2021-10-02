@@ -27,6 +27,17 @@ RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
 # removed
 #  libjpeg-turbo-dev php7-pdo 
 
+# install Image Magick
+RUN git clone https://github.com/Imagick/imagick \
+  cd imagick \
+  apk add php7-dev gcc g++ imagemagic-dev \
+  phpize && ./configure \
+  make \
+  make install \
+  cd ../ \
+  rm -rf imagick \
+  apk add php7-imagick
+
 RUN sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php7/php.ini && \
     sed -i 's/memory_limit = 128M/memory_limit = -1/g' /etc/php7/php.ini && \ 
     sed -i 's/max_execution_time = 30/max_execution_time = 0/g' /etc/php7/php.ini && \ 
