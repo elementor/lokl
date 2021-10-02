@@ -3,40 +3,82 @@ FROM alpine:edge
 ENV TERM="xterm"
 
 RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
-    bash curl less nginx ca-certificates tzdata zip curl \
-    libmcrypt-dev zlib-dev gmp-dev \
-    freetype-dev  libpng-dev \
-    php8-fpm php8-json php8-zlib php8-xml php8-phar php8-openssl \
-    php8-mysqli php8-session \
-    php8-gd php8-iconv php8-gmp php8-zip php8-fileinfo php8-pdo_mysql \
-    php8-curl php8-opcache php8-ctype php8-ftp php8-tokenizer php8-simplexml \
-    vim tmux git procps wget sed grep openssh-keygen openssh \
-    mariadb mariadb-server-utils mysql-client \
-    php8-intl php8-bcmath php8-dom php8-mbstring php8-xmlreader php8-xmlwriter && apk add -u musl && \
+  bash \
+  ca-certificates \
+  curl \
+  curl \
+  freetype-dev \
+  g++ \
+  gcc \
+  git \
+  gmp-dev \
+  grep \
+  imagemagick-dev \
+  less \
+  libmcrypt-dev \
+  libpng-dev \
+  make \
+  mariadb \
+  mariadb-server-utils \
+  mysql-client \
+  nginx \
+  openssh \
+  openssh-keygen \
+  php8-bcmath \
+  php8-ctype \
+  php8-curl \
+  php8-dev \
+  php8-dom \
+  php8-fileinfo \
+  php8-fpm \
+  php8-ftp \
+  php8-gd \
+  php8-gmp \
+  php8-iconv \
+  php8-intl \
+  php8-json \
+  php8-mbstring \
+  php8-mysqli \
+  php8-opcache \
+  php8-openssl \
+  php8-pdo_mysql \
+  php8-phar \
+  php8-session \
+  php8-simplexml \
+  php8-tokenizer \
+  php8-xml \
+  php8-xmlreader \
+  php8-xmlwriter \
+  php8-zip \
+  php8-zlib \
+  procps \
+  sed \
+  tmux \
+  tzdata \
+  vim \
+  wget \
+  zip \
+  zlib-dev \
+  && apk add -u musl && \
     rm -rf /var/cache/apk/*
 
 RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     composer && \
     rm -rf /var/cache/apk/*
 
-# RM PHP7 and link PHP8 after composer install
-RUN rm /usr/bin/php && \
-    ln -s /usr/bin/php8 /usr/bin/php
+# normalize some php8 bins
+RUN ln -s /usr/bin/phpize8 /usr/bin/phpize && \
+  ln -s /usr/bin/php-config8 /usr/bin/php-config
 
-# NOTE: not found since 7 > 8 upgrade: php8-apcu php8-mcrypt 
-
-# removed
-#  libjpeg-turbo-dev php8-pdo
-
-RUN git clone https://github.com/Imagick/imagick \
-  cd imagick \
-  apk add php8-dev gcc g++ imagemagic-dev \
-  phpize && ./configure \
-  make \
-  make install \
-  cd ../ \
-  rm -rf imagick \
-  apk add php8-imagick
+# install Image Magick
+RUN git clone https://github.com/Imagick/imagick && \
+  cd imagick && \
+  phpize8 && ./configure && \
+  make && \
+  make install && \
+  cd ../ && \
+  rm -rf imagick && \
+  apk add php8-pecl-imagick
 
 RUN sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php8/php.ini && \
     sed -i 's/memory_limit = 128M/memory_limit = -1/g' /etc/php8/php.ini && \ 
