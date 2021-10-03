@@ -67,7 +67,8 @@ RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     rm -rf /var/cache/apk/*
 
 # normalize some php8 bins
-RUN ln -s /usr/bin/phpize8 /usr/bin/phpize && \
+RUN ln -s /usr/bin/php8 /usr/bin/php && \
+  ln -s /usr/bin/phpize8 /usr/bin/phpize && \
   ln -s /usr/bin/php-config8 /usr/bin/php-config
 
 # install Image Magick

@@ -5,18 +5,65 @@ ENV XDEBUG_MODE="profile"
 ENV XDEBUG_CONFIG="output_dir=/tmp start_with_request=trigger trigger_value="
 
 RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
-    bash curl less nginx ca-certificates tzdata zip curl \
-    libmcrypt-dev zlib-dev gmp-dev \
-    freetype-dev libpng-dev \
-    php7-fpm php7-json php7-zlib php7-xml php7-phar php7-openssl \
-    php7-mysqli php7-session php7-pecl-xdebug \
-    php7-dev gcc g++ imagemagick-dev &&  \
-    php7-gd php7-iconv php7-gmp php7-zip php7-fileinfo php7-pdo_mysql \
-    php7-curl php7-opcache php7-ctype php7-ftp php7-tokenizer php7-simplexml \
-    vim tmux git procps wget sed grep openssh-keygen openssh \
-    mariadb mariadb-server-utils mysql-client \
-    php7-intl php7-bcmath php7-dom php7-mbstring php7-xmlreader php7-xmlwriter && apk add -u musl && \
-    rm -rf /var/cache/apk/*
+  bash \
+  ca-certificates \
+  curl \
+  curl \
+  freetype-dev \
+  g++ \
+  gcc \
+  git \
+  gmp-dev \
+  grep \
+  imagemagick-dev \
+  less \
+  libmcrypt-dev \
+  libpng-dev \
+  make \
+  mariadb \
+  mariadb-server-utils \
+  mysql-client \
+  nginx \
+  openssh \
+  openssh-keygen \
+  php7-bcmath \
+  php7-ctype \
+  php7-curl \
+  php7-dev \
+  php7-dom \
+  php7-fileinfo \
+  php7-fpm \
+  php7-ftp \
+  php7-gd \
+  php7-gmp \
+  php7-iconv \
+  php7-intl \
+  php7-json \
+  php7-mbstring \
+  php7-mysqli \
+  php7-opcache \
+  php7-openssl \
+  php7-pdo_mysql \
+  php7-pecl-xdebug \
+  php7-phar \
+  php7-session \
+  php7-simplexml \
+  php7-tokenizer \
+  php7-xml \
+  php7-xmlreader \
+  php7-xmlwriter \
+  php7-zip \
+  php7-zlib \
+  procps \
+  sed \
+  tmux \
+  tzdata \
+  vim \
+  wget \
+  zip \
+  zlib-dev \
+  && apk add -u musl && \
+  rm -rf /var/cache/apk/*
 
 RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     composer && \
@@ -30,7 +77,7 @@ RUN git clone https://github.com/Imagick/imagick && \
   make install && \
   cd ../ && \
   rm -rf imagick && \
-  apk add php7-imagick
+  apk add php7-pecl-imagick
 
 RUN sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php7/php.ini && \
     sed -i 's/memory_limit = 128M/memory_limit = -1/g' /etc/php7/php.ini && \ 
