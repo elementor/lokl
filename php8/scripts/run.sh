@@ -87,8 +87,6 @@ else
   wp plugin activate wp2static-addon-netlify
   wp plugin activate wp2static-addon-cloudflare-workers
   # wp plugin activate wp2static-addon-advanced-crawler
-  # TODO: check php8 compat
-  # wp plugin activate static-html-output
 
   # mark this as first run
   touch /second_run
