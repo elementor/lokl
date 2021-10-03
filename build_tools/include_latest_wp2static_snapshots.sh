@@ -55,7 +55,8 @@ do
   # exit if non-zero
   composer i -q || exit 1
   composer test || exit 1
-  composer coverage || echo "No coverage command for this repo"
+  # composer coverage || echo "No coverage command for this repo"
+  echo "Skipping composer coverage cmd as some repos don't have it..."
   echo ""
 
   # rm ~/Downloads/wp2static-addon-s3.zip
