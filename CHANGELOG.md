@@ -1,11 +1,18 @@
 ## Lokl 5.0.1
 
  - WordPress 5.8.1
- - WP-CLI xxx
- - PHPMyAdmin xxx
+ - WP-CLI 2.5.0
+ - PHPMyAdmin 5.1.1
  - ImageMagick included
  - PHP 7.4.20 and 8.0.11 site options
- - WP2Static versions: xx
+ - WordPress plugin versions:
+  - autoptimize                        | 2.9.2     
+  - static-html-output                 | 6.6.23    
+  - wp2static                          | 7.2.0-dev 
+  - wp2static-addon-cloudflare-workers | 1.0-dev   
+  - wp2static-addon-netlify            | 1.0.1     
+  - wp2static-addon-s3                 | 1.0.1-dev 
+  - wp2static-addon-zip                | 1.0.1   
 
 ## Lokl 5.0.0
 

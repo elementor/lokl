@@ -125,9 +125,9 @@ RUN cp -r /tmp/wordpress/* /usr/html/
 RUN rm -Rf /tmp/wordpress
 
 # extract phpMyAdmin to /usr/html/phpmyadmin/
-RUN unzip -q /installers/phpMyAdmin-5.1.0-all-languages.zip -d /tmp
-RUN mv /tmp/phpMyAdmin-5.1.0-all-languages /usr/html/phpmyadmin/
-RUN rm -Rf /tmp/phpMyAdmin-5.1.0-all-languages
+RUN unzip -q /installers/phpMyAdmin-5.1.1-all-languages.zip -d /tmp
+RUN mv /tmp/phpMyAdmin-5.1.1-all-languages /usr/html/phpmyadmin/
+RUN rm -Rf /tmp/phpMyAdmin-5.1.1-all-languages
 
 # allow autologin for phpmyadmin
 RUN mv /usr/html/phpmyadmin/config.sample.inc.php /usr/html/phpmyadmin/config.inc.php

@@ -77,15 +77,18 @@ else
   wp plugin delete hello
   wp plugin delete akismet
 
+  # install additional plugins
+  wp plugin install --activate autoptimize
+
   # activate default plugins
-  wp plugin activate static-html-output
-  wp plugin activate simplerstatic
   wp plugin activate wp2static
   wp plugin activate wp2static-addon-zip
   wp plugin activate wp2static-addon-s3
   wp plugin activate wp2static-addon-netlify
   wp plugin activate wp2static-addon-cloudflare-workers
   # wp plugin activate wp2static-addon-advanced-crawler
+  # TODO: check php8 compat
+  # wp plugin activate static-html-output
 
   # mark this as first run
   touch /second_run

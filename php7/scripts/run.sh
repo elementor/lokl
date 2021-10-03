@@ -76,9 +76,11 @@ else
   wp plugin delete hello
   wp plugin delete akismet
 
+  # install additional plugins
+  wp plugin install --activate autoptimize
+
   # activate default plugins
   wp plugin activate static-html-output
-  wp plugin activate simplerstatic
   wp plugin activate wp2static
   wp plugin activate wp2static-addon-zip
   wp plugin activate wp2static-addon-s3
