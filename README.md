@@ -33,12 +33,12 @@ Currently, these allow specifying directories from your host machine to mount wi
 
 Future enhancements to this templating will allow for things like specifying different sets of plugins/themes to auto-install in new Lokl sites.
 
-An example site template file and usage instrutions are available within the [lokl-cli](https://github.com/leonstafford/lokl-cli) repository.
+An example site template file and usage instrutions are available within the [lokl-cli](https://github.com/elementor/lokl-cli) repository.
 
 
 #### Programmatic usage
 
-If you're familiar with Docker and bash, you can read through the source code of this repository and the [lokl-cli](https://github.com/leonstafford/lokl-cli)'s to see how I provision and control Lokl. 
+If you're familiar with Docker and bash, you can read through the source code of this repository and the [lokl-cli](https://github.com/elementor/lokl-cli)'s to see how I provision and control Lokl. 
 
 Any docs I write about that will be quickly out of date, so please refer to the code and ask me any specific questions.
 
@@ -138,7 +138,7 @@ And there, we should our ready to run image.
 
 #### Running the provisioned image
 
-[Lokl CLI](https://github.com/lokl-cli) is my client for running an interactive wizard to create and manage Lokl sites. It can be run as an interactive wizard or instantiated with variables to skip the wizard and create a new site with specific details.
+[Lokl CLI](https://github.com/elementor/lokl-cli) is my client for running an interactive wizard to create and manage Lokl sites. It can be run as an interactive wizard or instantiated with variables to skip the wizard and create a new site with specific details.
 
 I want to perform the least amount of processes when a user is running the
  container for the first time. I also want to perform these modifications to
@@ -161,7 +161,7 @@ Docker does provide the ability to modify the image's `CMD` when launching a
 
 Well, it's mostly [me](https://ljs.dev) at this point, no organization or company behind this project, but here are some relevant URLs:
 
-* [GitHub](https://github.com/lokl-dev/lokl)
+* [GitHub](https://github.com/elementor/lokl)
 * [Docker Hub](https://hub.docker.com/r/lokl/lokl/)
 * [Lokl homepage](https://lokl.dev)
 
@@ -181,7 +181,7 @@ utility scripts able to be run/imported via the web terminal.
 
 * **Leon Stafford** - [ljs.dev](https://ljs.dev)
 
-See also the list of [contributors](https://github.com/lokl-dev/lokl) who 
+See also the list of [contributors](https://github.com/elementor/lokl) who 
 participated in this project.
 
 ## License
